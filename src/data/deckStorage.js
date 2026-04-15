@@ -21,7 +21,7 @@ export async function setSavedDecks(decks) {
 }
 
 export async function saveDeck(deck, existingDecks) {
-  const decks = existingDecks || await getSavedDecks();
+  const decks = existingDecks ? [...existingDecks] : await getSavedDecks();
   const sortedNew = [...deck.cardIds].sort().join(',');
 
   const dupeIndex = decks.findIndex(d =>

@@ -21,18 +21,9 @@ jobs:
       - name: Install JS dependencies
         run: npm ci
 
-      - name: Setup Ruby
-        uses: ruby/setup-ruby@v1
-        with:
-          ruby-version: '3.2'
-          bundler-cache: true
-          working-directory: ios
-
-      - name: Install CocoaPods
+      - name: Install CocoaPods dependencies
         working-directory: ios
-        run: |
-          bundle install
-          bundle exec pod install
+        run: pod install
 
       - name: Build unsigned archive
         working-directory: ios
@@ -56,11 +47,9 @@ jobs:
           ARCHIVE_PATH="${{ runner.temp }}/CRDeckViewer.xcarchive"
           APP_PATH="$ARCHIVE_PATH/Products/Applications/CRDeckViewer.app"
 
-          # Create Payload structure
           mkdir -p Payload
           cp -r "$APP_PATH" Payload/
 
-          # Create IPA
           zip -r CRDeckViewer-unsigned.ipa Payload
           rm -rf Payload
 
