@@ -3,11 +3,20 @@ import {
   View, Text, FlatList, Pressable, Alert,
   StyleSheet, SafeAreaView,
 } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
 import SavedDeckRow from '../components/SavedDeckRow';
 import cardData from '../data/cardDataProvider';
+import { useDeckContext } from '../context/DeckContext';
 
-export default function SavedDecksScreen({ decks, onDeckLoad, onDeckDelete }) {
+export default function SavedDecksScreen() {
+  const { savedDecks: decks, onDeckLoad, onDeckDelete } = useDeckContext();
+  const navigation = useNavigation();
   const [groupBy, setGroupBy] = useState('none');
+
+  const handleLoad = useCallback((index) => {
+    onDeckLoad(index);
+    navigation.navigate('Viewer');
+  }, [onDeckLoad, navigation]);
 
   const handleDelete = useCallback((index) => {
     Alert.alert(
@@ -97,7 +106,7 @@ export default function SavedDecksScreen({ decks, onDeckLoad, onDeckDelete }) {
                 key={originalIndex}
                 deck={deck}
                 index={originalIndex}
-                onLoad={onDeckLoad}
+                onLoad={handleLoad}
                 onDelete={handleDelete}
               />
             ))}

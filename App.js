@@ -1,113 +1,75 @@
-import React, { useState, useEffect, useCallback } from 'react';
-import {
-  View, Text, Pressable, StatusBar, Alert,
-  StyleSheet, SafeAreaView,
-} from 'react-native';
+import React from 'react';
+import { StatusBar } from 'react-native';
+import { NavigationContainer, DarkTheme } from '@react-navigation/native';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import DeckViewerScreen from './src/screens/DeckViewerScreen';
 import SavedDecksScreen from './src/screens/SavedDecksScreen';
-import { getSavedDecks, deleteDeck } from './src/data/deckStorage';
+import { DeckProvider, useDeckContext } from './src/context/DeckContext';
 
-export default function App() {
-  const [activeTab, setActiveTab] = useState('viewer');
-  const [savedDecks, setSavedDecks] = useState([]);
-  const [loadedDeck, setLoadedDeck] = useState(null);
+const Tab = createBottomTabNavigator();
 
-  useEffect(() => {
-    getSavedDecks().then(setSavedDecks);
-  }, []);
+const appTheme = {
+  ...DarkTheme,
+  colors: {
+    ...DarkTheme.colors,
+    background: '#0a0a1a',
+    card: '#0d0d1a',
+    border: 'rgba(255,255,255,0.08)',
+    primary: '#f0c040',
+    text: '#e8e8f0',
+  },
+};
 
-  const handleDeckSaved = useCallback((newDecks) => {
-    setSavedDecks(newDecks);
-  }, []);
-
-  const handleDeckLoad = useCallback((index) => {
-    const deck = savedDecks[index];
-    if (deck) {
-      setLoadedDeck({ ...deck, _loadTime: Date.now() });
-      setActiveTab('viewer');
-    }
-  }, [savedDecks]);
-
-  const handleDeckDelete = useCallback(async (index) => {
-    try {
-      const newDecks = await deleteDeck(index);
-      setSavedDecks(newDecks);
-    } catch (e) {
-      Alert.alert('Delete Failed', e.message);
-    }
-  }, []);
+function AppTabs() {
+  const { savedDecks } = useDeckContext();
+  const badgeCount = savedDecks.length > 0 ? savedDecks.length : undefined;
 
   return (
-    <View style={styles.container}>
-      <StatusBar barStyle="light-content" backgroundColor="#0a0a1a" />
-
-      {activeTab === 'viewer' ? (
-        <DeckViewerScreen
-          onDeckSaved={handleDeckSaved}
-          savedDecks={savedDecks}
-          loadedDeck={loadedDeck}
-        />
-      ) : (
-        <SavedDecksScreen
-          decks={savedDecks}
-          onDeckLoad={handleDeckLoad}
-          onDeckDelete={handleDeckDelete}
-        />
-      )}
-
-      <SafeAreaView style={styles.tabBarSafe}>
-        <View style={styles.tabBar}>
-          <Pressable
-            style={[styles.tab, activeTab === 'viewer' && styles.tabActive]}
-            onPress={() => setActiveTab('viewer')}
-          >
-            <Text style={[styles.tabLabel, activeTab === 'viewer' && styles.tabLabelActive]}>
-              Viewer
-            </Text>
-          </Pressable>
-          <Pressable
-            style={[styles.tab, activeTab === 'saved' && styles.tabActive]}
-            onPress={() => setActiveTab('saved')}
-          >
-            <Text style={[styles.tabLabel, activeTab === 'saved' && styles.tabLabelActive]}>
-              Saved{savedDecks.length > 0 ? ` (${savedDecks.length})` : ''}
-            </Text>
-          </Pressable>
-        </View>
-      </SafeAreaView>
-    </View>
+    <Tab.Navigator
+      screenOptions={{
+        headerShown: false,
+        tabBarActiveTintColor: '#f0c040',
+        tabBarInactiveTintColor: '#666',
+        tabBarStyle: {
+          backgroundColor: '#0d0d1a',
+          borderTopColor: 'rgba(255,255,255,0.08)',
+        },
+        tabBarLabelStyle: {
+          fontSize: 12,
+          fontWeight: '600',
+        },
+      }}
+    >
+      <Tab.Screen
+        name="Viewer"
+        component={DeckViewerScreen}
+        options={{ tabBarLabel: 'Viewer' }}
+      />
+      <Tab.Screen
+        name="Saved"
+        component={SavedDecksScreen}
+        options={{
+          tabBarLabel: 'Saved',
+          tabBarBadge: badgeCount,
+          tabBarBadgeStyle: badgeCount ? {
+            backgroundColor: '#f0c040',
+            color: '#0a0a1a',
+            fontSize: 11,
+            fontWeight: '700',
+          } : undefined,
+        }}
+      />
+    </Tab.Navigator>
   );
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#0a0a1a',
-  },
-  tabBarSafe: {
-    backgroundColor: '#0d0d1a',
-  },
-  tabBar: {
-    flexDirection: 'row',
-    borderTopWidth: 1,
-    borderTopColor: 'rgba(255,255,255,0.08)',
-    backgroundColor: '#0d0d1a',
-  },
-  tab: {
-    flex: 1,
-    alignItems: 'center',
-    paddingVertical: 12,
-  },
-  tabActive: {
-    borderTopWidth: 2,
-    borderTopColor: '#f0c040',
-  },
-  tabLabel: {
-    color: '#666',
-    fontSize: 14,
-    fontWeight: '600',
-  },
-  tabLabelActive: {
-    color: '#f0c040',
-  },
-});
+export default function App() {
+  return (
+    <DeckProvider>
+      <NavigationContainer theme={appTheme}>
+        <StatusBar barStyle="light-content" backgroundColor="#0a0a1a" />
+        <AppTabs />
+      </NavigationContainer>
+    </DeckProvider>
+  );
+}
