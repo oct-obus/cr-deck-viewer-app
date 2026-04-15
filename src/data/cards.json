@@ -1,0 +1,801 @@
+{
+  "26000000": {
+    "name": "Knight",
+    "icon": "https://cdns3.royaleapi.com/cdn-cgi/image/w=300,h=360,format=auto/static/img/cards/v9-f09d5c9d/knight.png",
+    "elixir": 3,
+    "rarity": "common",
+    "evoIcon": "https://cdns3.royaleapi.com/cdn-cgi/image/w=300,h=360,format=auto/static/img/cards/v9-f09d5c9d/knight-ev1.png",
+    "heroIcon": "https://cdns3.royaleapi.com/cdn-cgi/image/w=300,h=360,format=auto/static/img/cards/v9-f09d5c9d/knight-hero.png"
+  },
+  "26000001": {
+    "name": "Archers",
+    "icon": "https://cdns3.royaleapi.com/cdn-cgi/image/w=300,h=360,format=auto/static/img/cards/v9-f09d5c9d/archers.png",
+    "elixir": 3,
+    "rarity": "common",
+    "evoIcon": "https://cdns3.royaleapi.com/cdn-cgi/image/w=300,h=360,format=auto/static/img/cards/v9-f09d5c9d/archers-ev1.png"
+  },
+  "26000002": {
+    "name": "Goblins",
+    "icon": "https://cdns3.royaleapi.com/cdn-cgi/image/w=300,h=360,format=auto/static/img/cards/v9-f09d5c9d/goblins.png",
+    "elixir": 2,
+    "rarity": "common",
+    "heroIcon": "https://cdns3.royaleapi.com/cdn-cgi/image/w=300,h=360,format=auto/static/img/cards/v9-f09d5c9d/goblins-hero.png"
+  },
+  "26000003": {
+    "name": "Giant",
+    "icon": "https://cdns3.royaleapi.com/cdn-cgi/image/w=300,h=360,format=auto/static/img/cards/v9-f09d5c9d/giant.png",
+    "elixir": 5,
+    "rarity": "rare",
+    "heroIcon": "https://cdns3.royaleapi.com/cdn-cgi/image/w=300,h=360,format=auto/static/img/cards/v9-f09d5c9d/giant-hero.png",
+    "isWinCondition": true
+  },
+  "26000004": {
+    "name": "P.E.K.K.A",
+    "icon": "https://cdns3.royaleapi.com/cdn-cgi/image/w=300,h=360,format=auto/static/img/cards/v9-f09d5c9d/pekka.png",
+    "elixir": 7,
+    "rarity": "epic",
+    "evoIcon": "https://cdns3.royaleapi.com/cdn-cgi/image/w=300,h=360,format=auto/static/img/cards/v9-f09d5c9d/pekka-ev1.png"
+  },
+  "26000005": {
+    "name": "Minions",
+    "icon": "https://cdns3.royaleapi.com/cdn-cgi/image/w=300,h=360,format=auto/static/img/cards/v9-f09d5c9d/minions.png",
+    "elixir": 3,
+    "rarity": "common"
+  },
+  "26000006": {
+    "name": "Balloon",
+    "icon": "https://cdns3.royaleapi.com/cdn-cgi/image/w=300,h=360,format=auto/static/img/cards/v9-f09d5c9d/balloon.png",
+    "elixir": 5,
+    "rarity": "epic",
+    "heroIcon": "https://cdns3.royaleapi.com/cdn-cgi/image/w=300,h=360,format=auto/static/img/cards/v9-f09d5c9d/balloon-hero.png",
+    "isWinCondition": true
+  },
+  "26000007": {
+    "name": "Witch",
+    "icon": "https://cdns3.royaleapi.com/cdn-cgi/image/w=300,h=360,format=auto/static/img/cards/v9-f09d5c9d/witch.png",
+    "elixir": 5,
+    "rarity": "epic",
+    "evoIcon": "https://cdns3.royaleapi.com/cdn-cgi/image/w=300,h=360,format=auto/static/img/cards/v9-f09d5c9d/witch-ev1.png"
+  },
+  "26000008": {
+    "name": "Barbarians",
+    "icon": "https://cdns3.royaleapi.com/cdn-cgi/image/w=300,h=360,format=auto/static/img/cards/v9-f09d5c9d/barbarians.png",
+    "elixir": 5,
+    "rarity": "common",
+    "evoIcon": "https://cdns3.royaleapi.com/cdn-cgi/image/w=300,h=360,format=auto/static/img/cards/v9-f09d5c9d/barbarians-ev1.png"
+  },
+  "26000009": {
+    "name": "Golem",
+    "icon": "https://cdns3.royaleapi.com/cdn-cgi/image/w=300,h=360,format=auto/static/img/cards/v9-f09d5c9d/golem.png",
+    "elixir": 8,
+    "rarity": "epic",
+    "isWinCondition": true
+  },
+  "26000010": {
+    "name": "Skeletons",
+    "icon": "https://cdns3.royaleapi.com/cdn-cgi/image/w=300,h=360,format=auto/static/img/cards/v9-f09d5c9d/skeletons.png",
+    "elixir": 1,
+    "rarity": "common",
+    "evoIcon": "https://cdns3.royaleapi.com/cdn-cgi/image/w=300,h=360,format=auto/static/img/cards/v9-f09d5c9d/skeletons-ev1.png"
+  },
+  "26000011": {
+    "name": "Valkyrie",
+    "icon": "https://cdns3.royaleapi.com/cdn-cgi/image/w=300,h=360,format=auto/static/img/cards/v9-f09d5c9d/valkyrie.png",
+    "elixir": 4,
+    "rarity": "rare",
+    "evoIcon": "https://cdns3.royaleapi.com/cdn-cgi/image/w=300,h=360,format=auto/static/img/cards/v9-f09d5c9d/valkyrie-ev1.png"
+  },
+  "26000012": {
+    "name": "Skeleton Army",
+    "icon": "https://cdns3.royaleapi.com/cdn-cgi/image/w=300,h=360,format=auto/static/img/cards/v9-f09d5c9d/skeleton-army.png",
+    "elixir": 3,
+    "rarity": "epic",
+    "evoIcon": "https://cdns3.royaleapi.com/cdn-cgi/image/w=300,h=360,format=auto/static/img/cards/v9-f09d5c9d/skeleton-army-ev1.png"
+  },
+  "26000013": {
+    "name": "Bomber",
+    "icon": "https://cdns3.royaleapi.com/cdn-cgi/image/w=300,h=360,format=auto/static/img/cards/v9-f09d5c9d/bomber.png",
+    "elixir": 2,
+    "rarity": "common",
+    "evoIcon": "https://cdns3.royaleapi.com/cdn-cgi/image/w=300,h=360,format=auto/static/img/cards/v9-f09d5c9d/bomber-ev1.png"
+  },
+  "26000014": {
+    "name": "Musketeer",
+    "icon": "https://cdns3.royaleapi.com/cdn-cgi/image/w=300,h=360,format=auto/static/img/cards/v9-f09d5c9d/musketeer.png",
+    "elixir": 4,
+    "rarity": "rare",
+    "evoIcon": "https://cdns3.royaleapi.com/cdn-cgi/image/w=300,h=360,format=auto/static/img/cards/v9-f09d5c9d/musketeer-ev1.png",
+    "heroIcon": "https://cdns3.royaleapi.com/cdn-cgi/image/w=300,h=360,format=auto/static/img/cards/v9-f09d5c9d/musketeer-hero.png"
+  },
+  "26000015": {
+    "name": "Baby Dragon",
+    "icon": "https://cdns3.royaleapi.com/cdn-cgi/image/w=300,h=360,format=auto/static/img/cards/v9-f09d5c9d/baby-dragon.png",
+    "elixir": 4,
+    "rarity": "epic",
+    "evoIcon": "https://cdns3.royaleapi.com/cdn-cgi/image/w=300,h=360,format=auto/static/img/cards/v9-f09d5c9d/baby-dragon-ev1.png"
+  },
+  "26000016": {
+    "name": "Prince",
+    "icon": "https://cdns3.royaleapi.com/cdn-cgi/image/w=300,h=360,format=auto/static/img/cards/v9-f09d5c9d/prince.png",
+    "elixir": 5,
+    "rarity": "epic"
+  },
+  "26000017": {
+    "name": "Wizard",
+    "icon": "https://cdns3.royaleapi.com/cdn-cgi/image/w=300,h=360,format=auto/static/img/cards/v9-f09d5c9d/wizard.png",
+    "elixir": 5,
+    "rarity": "rare",
+    "evoIcon": "https://cdns3.royaleapi.com/cdn-cgi/image/w=300,h=360,format=auto/static/img/cards/v9-f09d5c9d/wizard-ev1.png",
+    "heroIcon": "https://cdns3.royaleapi.com/cdn-cgi/image/w=300,h=360,format=auto/static/img/cards/v9-f09d5c9d/wizard-hero.png"
+  },
+  "26000018": {
+    "name": "Mini P.E.K.K.A",
+    "icon": "https://cdns3.royaleapi.com/cdn-cgi/image/w=300,h=360,format=auto/static/img/cards/v9-f09d5c9d/mini-pekka.png",
+    "elixir": 4,
+    "rarity": "rare",
+    "heroIcon": "https://cdns3.royaleapi.com/cdn-cgi/image/w=300,h=360,format=auto/static/img/cards/v9-f09d5c9d/mini-pekka-hero.png"
+  },
+  "26000019": {
+    "name": "Spear Goblins",
+    "icon": "https://cdns3.royaleapi.com/cdn-cgi/image/w=300,h=360,format=auto/static/img/cards/v9-f09d5c9d/spear-goblins.png",
+    "elixir": 2,
+    "rarity": "common"
+  },
+  "26000020": {
+    "name": "Giant Skeleton",
+    "icon": "https://cdns3.royaleapi.com/cdn-cgi/image/w=300,h=360,format=auto/static/img/cards/v9-f09d5c9d/giant-skeleton.png",
+    "elixir": 6,
+    "rarity": "epic"
+  },
+  "26000021": {
+    "name": "Hog Rider",
+    "icon": "https://cdns3.royaleapi.com/cdn-cgi/image/w=300,h=360,format=auto/static/img/cards/v9-f09d5c9d/hog-rider.png",
+    "elixir": 4,
+    "rarity": "rare",
+    "isWinCondition": true
+  },
+  "26000022": {
+    "name": "Minion Horde",
+    "icon": "https://cdns3.royaleapi.com/cdn-cgi/image/w=300,h=360,format=auto/static/img/cards/v9-f09d5c9d/minion-horde.png",
+    "elixir": 5,
+    "rarity": "common",
+    "evoIcon": "https://cdns3.royaleapi.com/cdn-cgi/image/w=300,h=360,format=auto/static/img/cards/v9-f09d5c9d/minion-horde-ev1.png"
+  },
+  "26000023": {
+    "name": "Ice Wizard",
+    "icon": "https://cdns3.royaleapi.com/cdn-cgi/image/w=300,h=360,format=auto/static/img/cards/v9-f09d5c9d/ice-wizard.png",
+    "elixir": 3,
+    "rarity": "legendary"
+  },
+  "26000024": {
+    "name": "Royal Giant",
+    "icon": "https://cdns3.royaleapi.com/cdn-cgi/image/w=300,h=360,format=auto/static/img/cards/v9-f09d5c9d/royal-giant.png",
+    "elixir": 6,
+    "rarity": "common",
+    "evoIcon": "https://cdns3.royaleapi.com/cdn-cgi/image/w=300,h=360,format=auto/static/img/cards/v9-f09d5c9d/royal-giant-ev1.png",
+    "isWinCondition": true
+  },
+  "26000025": {
+    "name": "Guards",
+    "icon": "https://cdns3.royaleapi.com/cdn-cgi/image/w=300,h=360,format=auto/static/img/cards/v9-f09d5c9d/guards.png",
+    "elixir": 3,
+    "rarity": "epic"
+  },
+  "26000026": {
+    "name": "Princess",
+    "icon": "https://cdns3.royaleapi.com/cdn-cgi/image/w=300,h=360,format=auto/static/img/cards/v9-f09d5c9d/princess.png",
+    "elixir": 3,
+    "rarity": "legendary"
+  },
+  "26000027": {
+    "name": "Dark Prince",
+    "icon": "https://cdns3.royaleapi.com/cdn-cgi/image/w=300,h=360,format=auto/static/img/cards/v9-f09d5c9d/dark-prince.png",
+    "elixir": 4,
+    "rarity": "epic"
+  },
+  "26000028": {
+    "name": "Three Musketeers",
+    "icon": "https://cdns3.royaleapi.com/cdn-cgi/image/w=300,h=360,format=auto/static/img/cards/v9-f09d5c9d/three-musketeers.png",
+    "elixir": 9,
+    "rarity": "rare",
+    "isWinCondition": true
+  },
+  "26000029": {
+    "name": "Lava Hound",
+    "icon": "https://cdns3.royaleapi.com/cdn-cgi/image/w=300,h=360,format=auto/static/img/cards/v9-f09d5c9d/lava-hound.png",
+    "elixir": 7,
+    "rarity": "legendary",
+    "isWinCondition": true
+  },
+  "26000030": {
+    "name": "Ice Spirit",
+    "icon": "https://cdns3.royaleapi.com/cdn-cgi/image/w=300,h=360,format=auto/static/img/cards/v9-f09d5c9d/ice-spirit.png",
+    "elixir": 1,
+    "rarity": "common",
+    "evoIcon": "https://cdns3.royaleapi.com/cdn-cgi/image/w=300,h=360,format=auto/static/img/cards/v9-f09d5c9d/ice-spirit-ev1.png"
+  },
+  "26000031": {
+    "name": "Fire Spirit",
+    "icon": "https://cdns3.royaleapi.com/cdn-cgi/image/w=300,h=360,format=auto/static/img/cards/v9-f09d5c9d/fire-spirit.png",
+    "elixir": 1,
+    "rarity": "common"
+  },
+  "26000032": {
+    "name": "Miner",
+    "icon": "https://cdns3.royaleapi.com/cdn-cgi/image/w=300,h=360,format=auto/static/img/cards/v9-f09d5c9d/miner.png",
+    "elixir": 3,
+    "rarity": "legendary",
+    "isWinCondition": true
+  },
+  "26000033": {
+    "name": "Sparky",
+    "icon": "https://cdns3.royaleapi.com/cdn-cgi/image/w=300,h=360,format=auto/static/img/cards/v9-f09d5c9d/sparky.png",
+    "elixir": 6,
+    "rarity": "legendary"
+  },
+  "26000034": {
+    "name": "Bowler",
+    "icon": "https://cdns3.royaleapi.com/cdn-cgi/image/w=300,h=360,format=auto/static/img/cards/v9-f09d5c9d/bowler.png",
+    "elixir": 5,
+    "rarity": "epic"
+  },
+  "26000035": {
+    "name": "Lumberjack",
+    "icon": "https://cdns3.royaleapi.com/cdn-cgi/image/w=300,h=360,format=auto/static/img/cards/v9-f09d5c9d/lumberjack.png",
+    "elixir": 4,
+    "rarity": "legendary",
+    "evoIcon": "https://cdns3.royaleapi.com/cdn-cgi/image/w=300,h=360,format=auto/static/img/cards/v9-f09d5c9d/lumberjack-ev1.png"
+  },
+  "26000036": {
+    "name": "Battle Ram",
+    "icon": "https://cdns3.royaleapi.com/cdn-cgi/image/w=300,h=360,format=auto/static/img/cards/v9-f09d5c9d/battle-ram.png",
+    "elixir": 4,
+    "rarity": "rare",
+    "evoIcon": "https://cdns3.royaleapi.com/cdn-cgi/image/w=300,h=360,format=auto/static/img/cards/v9-f09d5c9d/battle-ram-ev1.png",
+    "isWinCondition": true
+  },
+  "26000037": {
+    "name": "Inferno Dragon",
+    "icon": "https://cdns3.royaleapi.com/cdn-cgi/image/w=300,h=360,format=auto/static/img/cards/v9-f09d5c9d/inferno-dragon.png",
+    "elixir": 4,
+    "rarity": "legendary",
+    "evoIcon": "https://cdns3.royaleapi.com/cdn-cgi/image/w=300,h=360,format=auto/static/img/cards/v9-f09d5c9d/inferno-dragon-ev1.png"
+  },
+  "26000038": {
+    "name": "Ice Golem",
+    "icon": "https://cdns3.royaleapi.com/cdn-cgi/image/w=300,h=360,format=auto/static/img/cards/v9-f09d5c9d/ice-golem.png",
+    "elixir": 2,
+    "rarity": "rare",
+    "heroIcon": "https://cdns3.royaleapi.com/cdn-cgi/image/w=300,h=360,format=auto/static/img/cards/v9-f09d5c9d/ice-golem-hero.png"
+  },
+  "26000039": {
+    "name": "Mega Minion",
+    "icon": "https://cdns3.royaleapi.com/cdn-cgi/image/w=300,h=360,format=auto/static/img/cards/v9-f09d5c9d/mega-minion.png",
+    "elixir": 3,
+    "rarity": "rare",
+    "heroIcon": "https://cdns3.royaleapi.com/cdn-cgi/image/w=300,h=360,format=auto/static/img/cards/v9-f09d5c9d/mega-minion-hero.png"
+  },
+  "26000040": {
+    "name": "Dart Goblin",
+    "icon": "https://cdns3.royaleapi.com/cdn-cgi/image/w=300,h=360,format=auto/static/img/cards/v9-f09d5c9d/dart-goblin.png",
+    "elixir": 3,
+    "rarity": "rare",
+    "evoIcon": "https://cdns3.royaleapi.com/cdn-cgi/image/w=300,h=360,format=auto/static/img/cards/v9-f09d5c9d/dart-goblin-ev1.png"
+  },
+  "26000041": {
+    "name": "Goblin Gang",
+    "icon": "https://cdns3.royaleapi.com/cdn-cgi/image/w=300,h=360,format=auto/static/img/cards/v9-f09d5c9d/goblin-gang.png",
+    "elixir": 3,
+    "rarity": "common"
+  },
+  "26000042": {
+    "name": "Electro Wizard",
+    "icon": "https://cdns3.royaleapi.com/cdn-cgi/image/w=300,h=360,format=auto/static/img/cards/v9-f09d5c9d/electro-wizard.png",
+    "elixir": 4,
+    "rarity": "legendary"
+  },
+  "26000043": {
+    "name": "Elite Barbarians",
+    "icon": "https://cdns3.royaleapi.com/cdn-cgi/image/w=300,h=360,format=auto/static/img/cards/v9-f09d5c9d/elite-barbarians.png",
+    "elixir": 6,
+    "rarity": "common"
+  },
+  "26000044": {
+    "name": "Hunter",
+    "icon": "https://cdns3.royaleapi.com/cdn-cgi/image/w=300,h=360,format=auto/static/img/cards/v9-f09d5c9d/hunter.png",
+    "elixir": 4,
+    "rarity": "epic",
+    "evoIcon": "https://cdns3.royaleapi.com/cdn-cgi/image/w=300,h=360,format=auto/static/img/cards/v9-f09d5c9d/hunter-ev1.png"
+  },
+  "26000045": {
+    "name": "Executioner",
+    "icon": "https://cdns3.royaleapi.com/cdn-cgi/image/w=300,h=360,format=auto/static/img/cards/v9-f09d5c9d/executioner.png",
+    "elixir": 5,
+    "rarity": "epic",
+    "evoIcon": "https://cdns3.royaleapi.com/cdn-cgi/image/w=300,h=360,format=auto/static/img/cards/v9-f09d5c9d/executioner-ev1.png"
+  },
+  "26000046": {
+    "name": "Bandit",
+    "icon": "https://cdns3.royaleapi.com/cdn-cgi/image/w=300,h=360,format=auto/static/img/cards/v9-f09d5c9d/bandit.png",
+    "elixir": 3,
+    "rarity": "legendary"
+  },
+  "26000047": {
+    "name": "Royal Recruits",
+    "icon": "https://cdns3.royaleapi.com/cdn-cgi/image/w=300,h=360,format=auto/static/img/cards/v9-f09d5c9d/royal-recruits.png",
+    "elixir": 7,
+    "rarity": "common",
+    "evoIcon": "https://cdns3.royaleapi.com/cdn-cgi/image/w=300,h=360,format=auto/static/img/cards/v9-f09d5c9d/royal-recruits-ev1.png"
+  },
+  "26000048": {
+    "name": "Night Witch",
+    "icon": "https://cdns3.royaleapi.com/cdn-cgi/image/w=300,h=360,format=auto/static/img/cards/v9-f09d5c9d/night-witch.png",
+    "elixir": 4,
+    "rarity": "legendary"
+  },
+  "26000049": {
+    "name": "Bats",
+    "icon": "https://cdns3.royaleapi.com/cdn-cgi/image/w=300,h=360,format=auto/static/img/cards/v9-f09d5c9d/bats.png",
+    "elixir": 2,
+    "rarity": "common",
+    "evoIcon": "https://cdns3.royaleapi.com/cdn-cgi/image/w=300,h=360,format=auto/static/img/cards/v9-f09d5c9d/bats-ev1.png"
+  },
+  "26000050": {
+    "name": "Royal Ghost",
+    "icon": "https://cdns3.royaleapi.com/cdn-cgi/image/w=300,h=360,format=auto/static/img/cards/v9-f09d5c9d/royal-ghost.png",
+    "elixir": 3,
+    "rarity": "legendary",
+    "evoIcon": "https://cdns3.royaleapi.com/cdn-cgi/image/w=300,h=360,format=auto/static/img/cards/v9-f09d5c9d/royal-ghost-ev1.png"
+  },
+  "26000051": {
+    "name": "Ram Rider",
+    "icon": "https://cdns3.royaleapi.com/cdn-cgi/image/w=300,h=360,format=auto/static/img/cards/v9-f09d5c9d/ram-rider.png",
+    "elixir": 5,
+    "rarity": "legendary",
+    "isWinCondition": true
+  },
+  "26000052": {
+    "name": "Zappies",
+    "icon": "https://cdns3.royaleapi.com/cdn-cgi/image/w=300,h=360,format=auto/static/img/cards/v9-f09d5c9d/zappies.png",
+    "elixir": 4,
+    "rarity": "rare"
+  },
+  "26000053": {
+    "name": "Rascals",
+    "icon": "https://cdns3.royaleapi.com/cdn-cgi/image/w=300,h=360,format=auto/static/img/cards/v9-f09d5c9d/rascals.png",
+    "elixir": 5,
+    "rarity": "common"
+  },
+  "26000054": {
+    "name": "Cannon Cart",
+    "icon": "https://cdns3.royaleapi.com/cdn-cgi/image/w=300,h=360,format=auto/static/img/cards/v9-f09d5c9d/cannon-cart.png",
+    "elixir": 5,
+    "rarity": "epic"
+  },
+  "26000055": {
+    "name": "Mega Knight",
+    "icon": "https://cdns3.royaleapi.com/cdn-cgi/image/w=300,h=360,format=auto/static/img/cards/v9-f09d5c9d/mega-knight.png",
+    "elixir": 7,
+    "rarity": "legendary",
+    "evoIcon": "https://cdns3.royaleapi.com/cdn-cgi/image/w=300,h=360,format=auto/static/img/cards/v9-f09d5c9d/mega-knight-ev1.png"
+  },
+  "26000056": {
+    "name": "Skeleton Barrel",
+    "icon": "https://cdns3.royaleapi.com/cdn-cgi/image/w=300,h=360,format=auto/static/img/cards/v9-f09d5c9d/skeleton-barrel.png",
+    "elixir": 3,
+    "rarity": "common",
+    "evoIcon": "https://cdns3.royaleapi.com/cdn-cgi/image/w=300,h=360,format=auto/static/img/cards/v9-f09d5c9d/skeleton-barrel-ev1.png",
+    "isWinCondition": true
+  },
+  "26000057": {
+    "name": "Flying Machine",
+    "icon": "https://cdns3.royaleapi.com/cdn-cgi/image/w=300,h=360,format=auto/static/img/cards/v9-f09d5c9d/flying-machine.png",
+    "elixir": 4,
+    "rarity": "rare"
+  },
+  "26000058": {
+    "name": "Wall Breakers",
+    "icon": "https://cdns3.royaleapi.com/cdn-cgi/image/w=300,h=360,format=auto/static/img/cards/v9-f09d5c9d/wall-breakers.png",
+    "elixir": 2,
+    "rarity": "epic",
+    "evoIcon": "https://cdns3.royaleapi.com/cdn-cgi/image/w=300,h=360,format=auto/static/img/cards/v9-f09d5c9d/wall-breakers-ev1.png",
+    "isWinCondition": true
+  },
+  "26000059": {
+    "name": "Royal Hogs",
+    "icon": "https://cdns3.royaleapi.com/cdn-cgi/image/w=300,h=360,format=auto/static/img/cards/v9-f09d5c9d/royal-hogs.png",
+    "elixir": 5,
+    "rarity": "rare",
+    "evoIcon": "https://cdns3.royaleapi.com/cdn-cgi/image/w=300,h=360,format=auto/static/img/cards/v9-f09d5c9d/royal-hogs-ev1.png",
+    "isWinCondition": true
+  },
+  "26000060": {
+    "name": "Goblin Giant",
+    "icon": "https://cdns3.royaleapi.com/cdn-cgi/image/w=300,h=360,format=auto/static/img/cards/v9-f09d5c9d/goblin-giant.png",
+    "elixir": 6,
+    "rarity": "epic",
+    "evoIcon": "https://cdns3.royaleapi.com/cdn-cgi/image/w=300,h=360,format=auto/static/img/cards/v9-f09d5c9d/goblin-giant-ev1.png",
+    "isWinCondition": true
+  },
+  "26000061": {
+    "name": "Fisherman",
+    "icon": "https://cdns3.royaleapi.com/cdn-cgi/image/w=300,h=360,format=auto/static/img/cards/v9-f09d5c9d/fisherman.png",
+    "elixir": 3,
+    "rarity": "legendary"
+  },
+  "26000062": {
+    "name": "Magic Archer",
+    "icon": "https://cdns3.royaleapi.com/cdn-cgi/image/w=300,h=360,format=auto/static/img/cards/v9-f09d5c9d/magic-archer.png",
+    "elixir": 4,
+    "rarity": "legendary",
+    "heroIcon": "https://cdns3.royaleapi.com/cdn-cgi/image/w=300,h=360,format=auto/static/img/cards/v9-f09d5c9d/magic-archer-hero.png"
+  },
+  "26000063": {
+    "name": "Electro Dragon",
+    "icon": "https://cdns3.royaleapi.com/cdn-cgi/image/w=300,h=360,format=auto/static/img/cards/v9-f09d5c9d/electro-dragon.png",
+    "elixir": 5,
+    "rarity": "epic",
+    "evoIcon": "https://cdns3.royaleapi.com/cdn-cgi/image/w=300,h=360,format=auto/static/img/cards/v9-f09d5c9d/electro-dragon-ev1.png"
+  },
+  "26000064": {
+    "name": "Firecracker",
+    "icon": "https://cdns3.royaleapi.com/cdn-cgi/image/w=300,h=360,format=auto/static/img/cards/v9-f09d5c9d/firecracker.png",
+    "elixir": 3,
+    "rarity": "common",
+    "evoIcon": "https://cdns3.royaleapi.com/cdn-cgi/image/w=300,h=360,format=auto/static/img/cards/v9-f09d5c9d/firecracker-ev1.png"
+  },
+  "26000065": {
+    "name": "Mighty Miner",
+    "icon": "https://cdns3.royaleapi.com/cdn-cgi/image/w=300,h=360,format=auto/static/img/cards/v9-f09d5c9d/mighty-miner.png",
+    "elixir": 4,
+    "rarity": "champion"
+  },
+  "26000067": {
+    "name": "Elixir Golem",
+    "icon": "https://cdns3.royaleapi.com/cdn-cgi/image/w=300,h=360,format=auto/static/img/cards/v9-f09d5c9d/elixir-golem.png",
+    "elixir": 3,
+    "rarity": "rare",
+    "isWinCondition": true
+  },
+  "26000068": {
+    "name": "Battle Healer",
+    "icon": "https://cdns3.royaleapi.com/cdn-cgi/image/w=300,h=360,format=auto/static/img/cards/v9-f09d5c9d/battle-healer.png",
+    "elixir": 4,
+    "rarity": "rare"
+  },
+  "26000069": {
+    "name": "Skeleton King",
+    "icon": "https://cdns3.royaleapi.com/cdn-cgi/image/w=300,h=360,format=auto/static/img/cards/v9-f09d5c9d/skeleton-king.png",
+    "elixir": 4,
+    "rarity": "champion"
+  },
+  "26000072": {
+    "name": "Archer Queen",
+    "icon": "https://cdns3.royaleapi.com/cdn-cgi/image/w=300,h=360,format=auto/static/img/cards/v9-f09d5c9d/archer-queen.png",
+    "elixir": 5,
+    "rarity": "champion"
+  },
+  "26000074": {
+    "name": "Golden Knight",
+    "icon": "https://cdns3.royaleapi.com/cdn-cgi/image/w=300,h=360,format=auto/static/img/cards/v9-f09d5c9d/golden-knight.png",
+    "elixir": 4,
+    "rarity": "champion"
+  },
+  "26000077": {
+    "name": "Monk",
+    "icon": "https://cdns3.royaleapi.com/cdn-cgi/image/w=300,h=360,format=auto/static/img/cards/v9-f09d5c9d/monk.png",
+    "elixir": 5,
+    "rarity": "champion"
+  },
+  "26000080": {
+    "name": "Skeleton Dragons",
+    "icon": "https://cdns3.royaleapi.com/cdn-cgi/image/w=300,h=360,format=auto/static/img/cards/v9-f09d5c9d/skeleton-dragons.png",
+    "elixir": 4,
+    "rarity": "common"
+  },
+  "26000083": {
+    "name": "Mother Witch",
+    "icon": "https://cdns3.royaleapi.com/cdn-cgi/image/w=300,h=360,format=auto/static/img/cards/v9-f09d5c9d/mother-witch.png",
+    "elixir": 4,
+    "rarity": "legendary"
+  },
+  "26000084": {
+    "name": "Electro Spirit",
+    "icon": "https://cdns3.royaleapi.com/cdn-cgi/image/w=300,h=360,format=auto/static/img/cards/v9-f09d5c9d/electro-spirit.png",
+    "elixir": 1,
+    "rarity": "common"
+  },
+  "26000085": {
+    "name": "Electro Giant",
+    "icon": "https://cdns3.royaleapi.com/cdn-cgi/image/w=300,h=360,format=auto/static/img/cards/v9-f09d5c9d/electro-giant.png",
+    "elixir": 7,
+    "rarity": "epic",
+    "isWinCondition": true
+  },
+  "26000087": {
+    "name": "Phoenix",
+    "icon": "https://cdns3.royaleapi.com/cdn-cgi/image/w=300,h=360,format=auto/static/img/cards/v9-f09d5c9d/phoenix.png",
+    "elixir": 4,
+    "rarity": "legendary"
+  },
+  "26000093": {
+    "name": "Little Prince",
+    "icon": "https://cdns3.royaleapi.com/cdn-cgi/image/w=300,h=360,format=auto/static/img/cards/v9-f09d5c9d/little-prince.png",
+    "elixir": 3,
+    "rarity": "champion"
+  },
+  "26000095": {
+    "name": "Goblin Demolisher",
+    "icon": "https://cdns3.royaleapi.com/cdn-cgi/image/w=300,h=360,format=auto/static/img/cards/v9-f09d5c9d/goblin-demolisher.png",
+    "elixir": 4,
+    "rarity": "rare"
+  },
+  "26000096": {
+    "name": "Goblin Machine",
+    "icon": "https://cdns3.royaleapi.com/cdn-cgi/image/w=300,h=360,format=auto/static/img/cards/v9-f09d5c9d/goblin-machine.png",
+    "elixir": 5,
+    "rarity": "legendary"
+  },
+  "26000097": {
+    "name": "Suspicious Bush",
+    "icon": "https://cdns3.royaleapi.com/cdn-cgi/image/w=300,h=360,format=auto/static/img/cards/v9-f09d5c9d/suspicious-bush.png",
+    "elixir": 2,
+    "rarity": "rare",
+    "isWinCondition": true
+  },
+  "26000099": {
+    "name": "Goblinstein",
+    "icon": "https://cdns3.royaleapi.com/cdn-cgi/image/w=300,h=360,format=auto/static/img/cards/v9-f09d5c9d/goblinstein.png",
+    "elixir": 5,
+    "rarity": "champion"
+  },
+  "26000101": {
+    "name": "Rune Giant",
+    "icon": "https://cdns3.royaleapi.com/cdn-cgi/image/w=300,h=360,format=auto/static/img/cards/v9-f09d5c9d/rune-giant.png",
+    "elixir": 4,
+    "rarity": "epic"
+  },
+  "26000102": {
+    "name": "Berserker",
+    "icon": "https://cdns3.royaleapi.com/cdn-cgi/image/w=300,h=360,format=auto/static/img/cards/v9-f09d5c9d/berserker.png",
+    "elixir": 2,
+    "rarity": "common"
+  },
+  "26000103": {
+    "name": "Boss Bandit",
+    "icon": "https://cdns3.royaleapi.com/cdn-cgi/image/w=300,h=360,format=auto/static/img/cards/v9-f09d5c9d/boss-bandit.png",
+    "elixir": 6,
+    "rarity": "champion"
+  },
+  "27000000": {
+    "name": "Cannon",
+    "icon": "https://cdns3.royaleapi.com/cdn-cgi/image/w=300,h=360,format=auto/static/img/cards/v9-f09d5c9d/cannon.png",
+    "elixir": 3,
+    "rarity": "common",
+    "evoIcon": "https://cdns3.royaleapi.com/cdn-cgi/image/w=300,h=360,format=auto/static/img/cards/v9-f09d5c9d/cannon-ev1.png"
+  },
+  "27000001": {
+    "name": "Goblin Hut",
+    "icon": "https://cdns3.royaleapi.com/cdn-cgi/image/w=300,h=360,format=auto/static/img/cards/v9-f09d5c9d/goblin-hut.png",
+    "elixir": 4,
+    "rarity": "rare"
+  },
+  "27000002": {
+    "name": "Mortar",
+    "icon": "https://cdns3.royaleapi.com/cdn-cgi/image/w=300,h=360,format=auto/static/img/cards/v9-f09d5c9d/mortar.png",
+    "elixir": 4,
+    "rarity": "common",
+    "evoIcon": "https://cdns3.royaleapi.com/cdn-cgi/image/w=300,h=360,format=auto/static/img/cards/v9-f09d5c9d/mortar-ev1.png",
+    "isWinCondition": true
+  },
+  "27000003": {
+    "name": "Inferno Tower",
+    "icon": "https://cdns3.royaleapi.com/cdn-cgi/image/w=300,h=360,format=auto/static/img/cards/v9-f09d5c9d/inferno-tower.png",
+    "elixir": 5,
+    "rarity": "rare"
+  },
+  "27000004": {
+    "name": "Bomb Tower",
+    "icon": "https://cdns3.royaleapi.com/cdn-cgi/image/w=300,h=360,format=auto/static/img/cards/v9-f09d5c9d/bomb-tower.png",
+    "elixir": 4,
+    "rarity": "rare"
+  },
+  "27000005": {
+    "name": "Barbarian Hut",
+    "icon": "https://cdns3.royaleapi.com/cdn-cgi/image/w=300,h=360,format=auto/static/img/cards/v9-f09d5c9d/barbarian-hut.png",
+    "elixir": 6,
+    "rarity": "rare"
+  },
+  "27000006": {
+    "name": "Tesla",
+    "icon": "https://cdns3.royaleapi.com/cdn-cgi/image/w=300,h=360,format=auto/static/img/cards/v9-f09d5c9d/tesla.png",
+    "elixir": 4,
+    "rarity": "common",
+    "evoIcon": "https://cdns3.royaleapi.com/cdn-cgi/image/w=300,h=360,format=auto/static/img/cards/v9-f09d5c9d/tesla-ev1.png"
+  },
+  "27000007": {
+    "name": "Elixir Collector",
+    "icon": "https://cdns3.royaleapi.com/cdn-cgi/image/w=300,h=360,format=auto/static/img/cards/v9-f09d5c9d/elixir-collector.png",
+    "elixir": 6,
+    "rarity": "rare"
+  },
+  "27000008": {
+    "name": "X-Bow",
+    "icon": "https://cdns3.royaleapi.com/cdn-cgi/image/w=300,h=360,format=auto/static/img/cards/v9-f09d5c9d/x-bow.png",
+    "elixir": 6,
+    "rarity": "epic",
+    "isWinCondition": true
+  },
+  "27000009": {
+    "name": "Tombstone",
+    "icon": "https://cdns3.royaleapi.com/cdn-cgi/image/w=300,h=360,format=auto/static/img/cards/v9-f09d5c9d/tombstone.png",
+    "elixir": 3,
+    "rarity": "rare"
+  },
+  "27000010": {
+    "name": "Furnace",
+    "icon": "https://cdns3.royaleapi.com/cdn-cgi/image/w=300,h=360,format=auto/static/img/cards/v9-f09d5c9d/furnace.png",
+    "elixir": 4,
+    "rarity": "rare",
+    "evoIcon": "https://cdns3.royaleapi.com/cdn-cgi/image/w=300,h=360,format=auto/static/img/cards/v9-f09d5c9d/furnace-ev1.png"
+  },
+  "27000012": {
+    "name": "Goblin Cage",
+    "icon": "https://cdns3.royaleapi.com/cdn-cgi/image/w=300,h=360,format=auto/static/img/cards/v9-f09d5c9d/goblin-cage.png",
+    "elixir": 4,
+    "rarity": "rare",
+    "evoIcon": "https://cdns3.royaleapi.com/cdn-cgi/image/w=300,h=360,format=auto/static/img/cards/v9-f09d5c9d/goblin-cage-ev1.png"
+  },
+  "27000013": {
+    "name": "Goblin Drill",
+    "icon": "https://cdns3.royaleapi.com/cdn-cgi/image/w=300,h=360,format=auto/static/img/cards/v9-f09d5c9d/goblin-drill.png",
+    "elixir": 4,
+    "rarity": "epic",
+    "evoIcon": "https://cdns3.royaleapi.com/cdn-cgi/image/w=300,h=360,format=auto/static/img/cards/v9-f09d5c9d/goblin-drill-ev1.png",
+    "isWinCondition": true
+  },
+  "28000000": {
+    "name": "Fireball",
+    "icon": "https://cdns3.royaleapi.com/cdn-cgi/image/w=300,h=360,format=auto/static/img/cards/v9-f09d5c9d/fireball.png",
+    "elixir": 4,
+    "rarity": "rare"
+  },
+  "28000001": {
+    "name": "Arrows",
+    "icon": "https://cdns3.royaleapi.com/cdn-cgi/image/w=300,h=360,format=auto/static/img/cards/v9-f09d5c9d/arrows.png",
+    "elixir": 3,
+    "rarity": "common"
+  },
+  "28000002": {
+    "name": "Rage",
+    "icon": "https://cdns3.royaleapi.com/cdn-cgi/image/w=300,h=360,format=auto/static/img/cards/v9-f09d5c9d/rage.png",
+    "elixir": 2,
+    "rarity": "epic"
+  },
+  "28000003": {
+    "name": "Rocket",
+    "icon": "https://cdns3.royaleapi.com/cdn-cgi/image/w=300,h=360,format=auto/static/img/cards/v9-f09d5c9d/rocket.png",
+    "elixir": 6,
+    "rarity": "rare"
+  },
+  "28000004": {
+    "name": "Goblin Barrel",
+    "icon": "https://cdns3.royaleapi.com/cdn-cgi/image/w=300,h=360,format=auto/static/img/cards/v9-f09d5c9d/goblin-barrel.png",
+    "elixir": 3,
+    "rarity": "epic",
+    "evoIcon": "https://cdns3.royaleapi.com/cdn-cgi/image/w=300,h=360,format=auto/static/img/cards/v9-f09d5c9d/goblin-barrel-ev1.png",
+    "isWinCondition": true
+  },
+  "28000005": {
+    "name": "Freeze",
+    "icon": "https://cdns3.royaleapi.com/cdn-cgi/image/w=300,h=360,format=auto/static/img/cards/v9-f09d5c9d/freeze.png",
+    "elixir": 4,
+    "rarity": "epic"
+  },
+  "28000006": {
+    "name": "Mirror",
+    "icon": "https://cdns3.royaleapi.com/cdn-cgi/image/w=300,h=360,format=auto/static/img/cards/v9-f09d5c9d/mirror.png",
+    "elixir": 0,
+    "rarity": "epic"
+  },
+  "28000007": {
+    "name": "Lightning",
+    "icon": "https://cdns3.royaleapi.com/cdn-cgi/image/w=300,h=360,format=auto/static/img/cards/v9-f09d5c9d/lightning.png",
+    "elixir": 6,
+    "rarity": "epic"
+  },
+  "28000008": {
+    "name": "Zap",
+    "icon": "https://cdns3.royaleapi.com/cdn-cgi/image/w=300,h=360,format=auto/static/img/cards/v9-f09d5c9d/zap.png",
+    "elixir": 2,
+    "rarity": "common",
+    "evoIcon": "https://cdns3.royaleapi.com/cdn-cgi/image/w=300,h=360,format=auto/static/img/cards/v9-f09d5c9d/zap-ev1.png"
+  },
+  "28000009": {
+    "name": "Poison",
+    "icon": "https://cdns3.royaleapi.com/cdn-cgi/image/w=300,h=360,format=auto/static/img/cards/v9-f09d5c9d/poison.png",
+    "elixir": 4,
+    "rarity": "epic"
+  },
+  "28000010": {
+    "name": "Graveyard",
+    "icon": "https://cdns3.royaleapi.com/cdn-cgi/image/w=300,h=360,format=auto/static/img/cards/v9-f09d5c9d/graveyard.png",
+    "elixir": 5,
+    "rarity": "legendary",
+    "isWinCondition": true
+  },
+  "28000011": {
+    "name": "The Log",
+    "icon": "https://cdns3.royaleapi.com/cdn-cgi/image/w=300,h=360,format=auto/static/img/cards/v9-f09d5c9d/the-log.png",
+    "elixir": 2,
+    "rarity": "legendary"
+  },
+  "28000012": {
+    "name": "Tornado",
+    "icon": "https://cdns3.royaleapi.com/cdn-cgi/image/w=300,h=360,format=auto/static/img/cards/v9-f09d5c9d/tornado.png",
+    "elixir": 3,
+    "rarity": "epic"
+  },
+  "28000013": {
+    "name": "Clone",
+    "icon": "https://cdns3.royaleapi.com/cdn-cgi/image/w=300,h=360,format=auto/static/img/cards/v9-f09d5c9d/clone.png",
+    "elixir": 3,
+    "rarity": "epic"
+  },
+  "28000014": {
+    "name": "Earthquake",
+    "icon": "https://cdns3.royaleapi.com/cdn-cgi/image/w=300,h=360,format=auto/static/img/cards/v9-f09d5c9d/earthquake.png",
+    "elixir": 3,
+    "rarity": "rare"
+  },
+  "28000015": {
+    "name": "Barbarian Barrel",
+    "icon": "https://cdns3.royaleapi.com/cdn-cgi/image/w=300,h=360,format=auto/static/img/cards/v9-f09d5c9d/barbarian-barrel.png",
+    "elixir": 2,
+    "rarity": "epic",
+    "heroIcon": "https://cdns3.royaleapi.com/cdn-cgi/image/w=300,h=360,format=auto/static/img/cards/v9-f09d5c9d/barbarian-barrel-hero.png"
+  },
+  "28000016": {
+    "name": "Heal Spirit",
+    "icon": "https://cdns3.royaleapi.com/cdn-cgi/image/w=300,h=360,format=auto/static/img/cards/v9-f09d5c9d/heal-spirit.png",
+    "elixir": 1,
+    "rarity": "rare"
+  },
+  "28000017": {
+    "name": "Giant Snowball",
+    "icon": "https://cdns3.royaleapi.com/cdn-cgi/image/w=300,h=360,format=auto/static/img/cards/v9-f09d5c9d/giant-snowball.png",
+    "elixir": 2,
+    "rarity": "common",
+    "evoIcon": "https://cdns3.royaleapi.com/cdn-cgi/image/w=300,h=360,format=auto/static/img/cards/v9-f09d5c9d/giant-snowball-ev1.png"
+  },
+  "28000018": {
+    "name": "Royal Delivery",
+    "icon": "https://cdns3.royaleapi.com/cdn-cgi/image/w=300,h=360,format=auto/static/img/cards/v9-f09d5c9d/royal-delivery.png",
+    "elixir": 3,
+    "rarity": "common"
+  },
+  "28000023": {
+    "name": "Void",
+    "icon": "https://cdns3.royaleapi.com/cdn-cgi/image/w=300,h=360,format=auto/static/img/cards/v9-f09d5c9d/void.png",
+    "elixir": 3,
+    "rarity": "epic"
+  },
+  "28000024": {
+    "name": "Goblin Curse",
+    "icon": "https://cdns3.royaleapi.com/cdn-cgi/image/w=300,h=360,format=auto/static/img/cards/v9-f09d5c9d/goblin-curse.png",
+    "elixir": 2,
+    "rarity": "epic"
+  },
+  "28000025": {
+    "name": "Spirit Empress",
+    "icon": "https://cdns3.royaleapi.com/cdn-cgi/image/w=300,h=360,format=auto/static/img/cards/v9-f09d5c9d/spirit-empress.png",
+    "elixir": 6,
+    "rarity": "legendary"
+  },
+  "28000026": {
+    "name": "Vines",
+    "icon": "https://cdns3.royaleapi.com/cdn-cgi/image/w=300,h=360,format=auto/static/img/cards/v9-f09d5c9d/vines.png",
+    "elixir": 3,
+    "rarity": "epic"
+  }
+}
