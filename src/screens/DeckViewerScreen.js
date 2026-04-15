@@ -10,8 +10,10 @@ import { generateDeckName } from '../shared/deckNaming';
 import { encodeDeck } from '../shared/deckUrl';
 import { parseDeckString } from '../shared/deckParser';
 import { saveDeck } from '../data/deckStorage';
+import { useDeckContext } from '../context/DeckContext';
 
-export default function DeckViewerScreen({ onDeckSaved, savedDecks, loadedDeck }) {
+export default function DeckViewerScreen() {
+  const { onDeckSaved, savedDecks, loadedDeck } = useDeckContext();
   const [inputText, setInputText] = useState('');
   const [deckCardIds, setDeckCardIds] = useState([]);
   const [towerTroop, setTowerTroop] = useState(null);
