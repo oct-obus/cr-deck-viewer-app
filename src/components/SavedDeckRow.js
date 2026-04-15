@@ -1,8 +1,16 @@
 import React from 'react';
-import { View, Text, Image, Pressable, StyleSheet } from 'react-native';
+import { View, Text, Image, Pressable, StyleSheet, Platform } from 'react-native';
 import { RARITY_COLORS } from '../shared/constants';
 import { getCardImage } from '../data/cardDataProvider';
 import cardData from '../data/cardDataProvider';
+
+let GlassView = View;
+if (Platform.OS === 'ios') {
+  try {
+    const lg = require('@callstack/liquid-glass');
+    if (lg.isLiquidGlassSupported()) GlassView = lg.LiquidGlassView;
+  } catch {}
+}
 
 // Compact saved deck row for the list view
 export default function SavedDeckRow({ deck, index, onLoad, onDelete }) {
@@ -22,7 +30,11 @@ export default function SavedDeckRow({ deck, index, onLoad, onDelete }) {
   const date = new Date(deck.savedAt).toLocaleDateString();
 
   return (
-    <Pressable style={styles.row} onPress={() => onLoad(index)}>
+    <Pressable onPress={() => onLoad(index)}>
+      <GlassView
+        style={styles.row}
+        {...(GlassView !== View ? { effect: 'clear', colorScheme: 'dark', interactive: true } : {})}
+      >
       <View style={styles.cardsRow}>{cards}</View>
       <View style={styles.info}>
         <Text style={styles.name} numberOfLines={1}>{deck.name}</Text>
@@ -35,6 +47,7 @@ export default function SavedDeckRow({ deck, index, onLoad, onDelete }) {
       >
         <Text style={styles.deleteText}>✕</Text>
       </Pressable>
+      </GlassView>
     </Pressable>
   );
 }

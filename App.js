@@ -1,13 +1,13 @@
 import React from 'react';
-import { StatusBar } from 'react-native';
+import { Platform, StatusBar } from 'react-native';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 import { NavigationContainer, DarkTheme } from '@react-navigation/native';
-import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import { createNativeBottomTabNavigator } from '@react-navigation/bottom-tabs/unstable';
 import DeckViewerScreen from './src/screens/DeckViewerScreen';
 import SavedDecksScreen from './src/screens/SavedDecksScreen';
 import { DeckProvider, useDeckContext } from './src/context/DeckContext';
 
-const Tab = createBottomTabNavigator();
+const Tab = createNativeBottomTabNavigator();
 
 const appTheme = {
   ...DarkTheme,
@@ -28,36 +28,31 @@ function AppTabs() {
   return (
     <Tab.Navigator
       screenOptions={{
-        headerShown: false,
         tabBarActiveTintColor: '#f0c040',
-        tabBarInactiveTintColor: '#666',
-        tabBarStyle: {
-          backgroundColor: '#0d0d1a',
-          borderTopColor: 'rgba(255,255,255,0.08)',
-        },
-        tabBarLabelStyle: {
-          fontSize: 12,
-          fontWeight: '600',
-        },
+        tabBarInactiveTintColor: '#999',
       }}
     >
       <Tab.Screen
         name="Viewer"
         component={DeckViewerScreen}
-        options={{ tabBarLabel: 'Viewer' }}
+        options={{
+          title: 'Viewer',
+          tabBarIcon: Platform.OS === 'ios'
+            ? { type: 'sfSymbol', name: 'rectangle.stack' }
+            : undefined,
+          headerShown: false,
+        }}
       />
       <Tab.Screen
         name="Saved"
         component={SavedDecksScreen}
         options={{
-          tabBarLabel: 'Saved',
-          tabBarBadge: badgeCount,
-          tabBarBadgeStyle: badgeCount ? {
-            backgroundColor: '#f0c040',
-            color: '#0a0a1a',
-            fontSize: 11,
-            fontWeight: '700',
-          } : undefined,
+          title: 'Saved',
+          tabBarIcon: Platform.OS === 'ios'
+            ? { type: 'sfSymbol', name: 'bookmark.fill' }
+            : undefined,
+          tabBarBadge: badgeCount != null ? String(badgeCount) : undefined,
+          headerShown: false,
         }}
       />
     </Tab.Navigator>

@@ -5,7 +5,6 @@ import {
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useNavigation } from '@react-navigation/native';
-import { useBottomTabBarHeight } from '@react-navigation/bottom-tabs';
 import SavedDeckRow from '../components/SavedDeckRow';
 import cardData from '../data/cardDataProvider';
 import { useDeckContext } from '../context/DeckContext';
@@ -13,7 +12,6 @@ import { useDeckContext } from '../context/DeckContext';
 export default function SavedDecksScreen() {
   const { savedDecks: decks, onDeckLoad, onDeckDelete } = useDeckContext();
   const navigation = useNavigation();
-  const tabBarHeight = useBottomTabBarHeight();
   const [groupBy, setGroupBy] = useState('none');
 
   const handleLoad = useCallback((index) => {
@@ -115,7 +113,7 @@ export default function SavedDecksScreen() {
             ))}
           </View>
         )}
-        contentContainerStyle={[styles.list, { paddingBottom: tabBarHeight + 16 }]}
+        contentContainerStyle={styles.list}
         showsVerticalScrollIndicator={false}
       />
     </SafeAreaView>
