@@ -1,9 +1,11 @@
 import React, { useState, useCallback, useEffect } from 'react';
 import {
   View, Text, ScrollView, Pressable, Modal, Alert,
-  StyleSheet, SafeAreaView, TextInput, Linking, Share,
+  StyleSheet, TextInput, Linking, Share,
   KeyboardAvoidingView, Platform,
 } from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
+import { useBottomTabBarHeight } from '@react-navigation/bottom-tabs';
 import DeckDisplay from '../components/DeckDisplay';
 import cardData from '../data/cardDataProvider';
 import { generateDeckName } from '../shared/deckNaming';
@@ -14,6 +16,7 @@ import { useDeckContext } from '../context/DeckContext';
 
 export default function DeckViewerScreen() {
   const { onDeckSaved, savedDecks, loadedDeck } = useDeckContext();
+  const tabBarHeight = useBottomTabBarHeight();
   const [inputText, setInputText] = useState('');
   const [deckCardIds, setDeckCardIds] = useState([]);
   const [towerTroop, setTowerTroop] = useState(null);
@@ -97,12 +100,12 @@ export default function DeckViewerScreen() {
   }, [deckCardIds, towerTroop]);
 
   return (
-    <SafeAreaView style={styles.safe}>
+    <SafeAreaView style={styles.safe} edges={['top']}>
       <KeyboardAvoidingView
         style={styles.flex}
         behavior={Platform.OS === 'ios' ? 'padding' : undefined}
       >
-        <ScrollView style={styles.scroll} contentContainerStyle={styles.scrollContent}>
+        <ScrollView style={styles.scroll} contentContainerStyle={[styles.scrollContent, { paddingBottom: tabBarHeight + 16 }]}>
           <Text style={styles.title}>CR Deck Viewer</Text>
 
           {showInput ? (
