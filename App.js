@@ -3,13 +3,12 @@ import {
   View, Text, Pressable, StatusBar,
   StyleSheet, SafeAreaView,
 } from 'react-native';
-import DeckBuilderScreen from './src/screens/DeckBuilderScreen';
+import DeckViewerScreen from './src/screens/DeckViewerScreen';
 import SavedDecksScreen from './src/screens/SavedDecksScreen';
 import { getSavedDecks, deleteDeck } from './src/data/deckStorage';
-import cardData from './src/data/cardDataProvider';
 
 export default function App() {
-  const [activeTab, setActiveTab] = useState('builder');
+  const [activeTab, setActiveTab] = useState('viewer');
   const [savedDecks, setSavedDecks] = useState([]);
   const [loadedDeck, setLoadedDeck] = useState(null);
 
@@ -24,8 +23,8 @@ export default function App() {
   const handleDeckLoad = useCallback((index) => {
     const deck = savedDecks[index];
     if (deck) {
-      setLoadedDeck(deck);
-      setActiveTab('builder');
+      setLoadedDeck({ ...deck, _loadTime: Date.now() });
+      setActiveTab('viewer');
     }
   }, [savedDecks]);
 
@@ -38,8 +37,8 @@ export default function App() {
     <View style={styles.container}>
       <StatusBar barStyle="light-content" backgroundColor="#0a0a1a" />
 
-      {activeTab === 'builder' ? (
-        <DeckBuilderScreen
+      {activeTab === 'viewer' ? (
+        <DeckViewerScreen
           onDeckSaved={handleDeckSaved}
           savedDecks={savedDecks}
           loadedDeck={loadedDeck}
@@ -52,25 +51,22 @@ export default function App() {
         />
       )}
 
-      {/* Tab bar */}
       <SafeAreaView style={styles.tabBarSafe}>
         <View style={styles.tabBar}>
           <Pressable
-            style={[styles.tab, activeTab === 'builder' && styles.tabActive]}
-            onPress={() => setActiveTab('builder')}
+            style={[styles.tab, activeTab === 'viewer' && styles.tabActive]}
+            onPress={() => setActiveTab('viewer')}
           >
-            <Text style={styles.tabIcon}>🔨</Text>
-            <Text style={[styles.tabLabel, activeTab === 'builder' && styles.tabLabelActive]}>
-              Builder
+            <Text style={[styles.tabLabel, activeTab === 'viewer' && styles.tabLabelActive]}>
+              Viewer
             </Text>
           </Pressable>
           <Pressable
             style={[styles.tab, activeTab === 'saved' && styles.tabActive]}
             onPress={() => setActiveTab('saved')}
           >
-            <Text style={styles.tabIcon}>📋</Text>
             <Text style={[styles.tabLabel, activeTab === 'saved' && styles.tabLabelActive]}>
-              Saved ({savedDecks.length})
+              Saved{savedDecks.length > 0 ? ` (${savedDecks.length})` : ''}
             </Text>
           </Pressable>
         </View>
@@ -96,19 +92,15 @@ const styles = StyleSheet.create({
   tab: {
     flex: 1,
     alignItems: 'center',
-    paddingVertical: 10,
+    paddingVertical: 12,
   },
   tabActive: {
     borderTopWidth: 2,
     borderTopColor: '#f0c040',
   },
-  tabIcon: {
-    fontSize: 20,
-    marginBottom: 2,
-  },
   tabLabel: {
     color: '#666',
-    fontSize: 12,
+    fontSize: 14,
     fontWeight: '600',
   },
   tabLabelActive: {

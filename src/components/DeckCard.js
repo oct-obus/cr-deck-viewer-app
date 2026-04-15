@@ -3,15 +3,15 @@ import { View, Image, Text, StyleSheet, Pressable } from 'react-native';
 import { RARITY_COLORS } from '../shared/constants';
 import { getCardImage } from '../data/cardDataProvider';
 
-// Single card in the deck display (8-slot view)
-export default function DeckCard({ card, index, onPress, onLongPress, size = 'normal' }) {
+export default function DeckCard({ card, index, size = 'normal' }) {
   if (!card) {
     return (
-      <Pressable style={[styles.container, styles.empty, sizeStyles[size]]} onPress={onPress}>
-        <View style={styles.emptySlot}>
-          <Text style={styles.emptyText}>+</Text>
+      <View style={[styles.container, sizeStyles[size]]}>
+        <View style={styles.unknownSlot}>
+          <Text style={styles.unknownText}>?</Text>
         </View>
-      </Pressable>
+        <Text style={styles.unknownName}>Unknown</Text>
+      </View>
     );
   }
 
@@ -19,22 +19,15 @@ export default function DeckCard({ card, index, onPress, onLongPress, size = 'no
   const rarityColor = RARITY_COLORS[card.rarity] || '#666';
 
   return (
-    <Pressable
-      style={[styles.container, sizeStyles[size]]}
-      onPress={onPress}
-      onLongPress={onLongPress}
-    >
+    <View style={[styles.container, sizeStyles[size]]}>
       <View style={[styles.imageWrapper, { borderColor: rarityColor }]}>
         <Image source={imageSource} style={styles.cardImage} resizeMode="cover" />
       </View>
       <Text style={[styles.name, { color: rarityColor }]} numberOfLines={1}>
         {card.name}
       </Text>
-      <View style={styles.elixirRow}>
-        <View style={styles.elixirDot} />
-        <Text style={styles.elixirText}>{card.elixir}</Text>
-      </View>
-    </Pressable>
+      <Text style={styles.elixirText}>{card.elixir} elixir</Text>
+    </View>
   );
 }
 
@@ -50,22 +43,22 @@ const styles = StyleSheet.create({
     marginHorizontal: 2,
     marginVertical: 4,
   },
-  empty: {},
-  emptySlot: {
+  unknownSlot: {
     width: '100%',
     aspectRatio: 3 / 4,
-    backgroundColor: 'rgba(255,255,255,0.06)',
-    borderRadius: 8,
-    borderWidth: 1.5,
-    borderColor: 'rgba(255,255,255,0.15)',
-    borderStyle: 'dashed',
+    backgroundColor: '#333',
+    borderRadius: 6,
     justifyContent: 'center',
     alignItems: 'center',
   },
-  emptyText: {
-    fontSize: 24,
-    color: 'rgba(255,255,255,0.3)',
-    fontWeight: '300',
+  unknownText: {
+    fontSize: 20,
+    color: '#666',
+  },
+  unknownName: {
+    fontSize: 10,
+    color: '#666',
+    marginTop: 2,
   },
   imageWrapper: {
     width: '100%',
@@ -85,21 +78,9 @@ const styles = StyleSheet.create({
     marginTop: 2,
     textAlign: 'center',
   },
-  elixirRow: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    marginTop: 1,
-  },
-  elixirDot: {
-    width: 8,
-    height: 8,
-    borderRadius: 4,
-    backgroundColor: '#b8a5ff',
-    marginRight: 3,
-  },
   elixirText: {
-    fontSize: 11,
-    color: '#b8a5ff',
-    fontWeight: '700',
+    fontSize: 10,
+    color: '#999',
+    marginTop: 1,
   },
 });

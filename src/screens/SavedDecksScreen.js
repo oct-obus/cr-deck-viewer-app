@@ -6,8 +6,8 @@ import {
 import SavedDeckRow from '../components/SavedDeckRow';
 import cardData from '../data/cardDataProvider';
 
-export default function SavedDecksScreen({ decks, onDeckLoad, onDeckDelete, onDecksChanged }) {
-  const [groupBy, setGroupBy] = useState('none'); // 'none' or 'wincon'
+export default function SavedDecksScreen({ decks, onDeckLoad, onDeckDelete }) {
+  const [groupBy, setGroupBy] = useState('none');
 
   const handleDelete = useCallback((index) => {
     Alert.alert(
@@ -15,11 +15,7 @@ export default function SavedDecksScreen({ decks, onDeckLoad, onDeckDelete, onDe
       `Delete "${decks[index]?.name}"?`,
       [
         { text: 'Cancel', style: 'cancel' },
-        {
-          text: 'Delete',
-          style: 'destructive',
-          onPress: () => onDeckDelete(index),
-        },
+        { text: 'Delete', style: 'destructive', onPress: () => onDeckDelete(index) },
       ]
     );
   }, [decks, onDeckDelete]);
@@ -36,8 +32,7 @@ export default function SavedDecksScreen({ decks, onDeckLoad, onDeckDelete, onDe
       if (wincons.length === 0) {
         key = 'Other';
       } else {
-        const names = wincons.map(id => cardData[id]?.name || id);
-        key = names.sort().join(' + ');
+        key = wincons.map(id => cardData[id]?.name || id).sort().join(' + ');
       }
       if (!groups[key]) groups[key] = [];
       groups[key].push({ deck, originalIndex: i });
@@ -61,10 +56,9 @@ export default function SavedDecksScreen({ decks, onDeckLoad, onDeckDelete, onDe
     return (
       <SafeAreaView style={styles.safe}>
         <View style={styles.emptyContainer}>
-          <Text style={styles.emptyIcon}>📋</Text>
           <Text style={styles.emptyTitle}>No Saved Decks</Text>
           <Text style={styles.emptySubtitle}>
-            Build a deck and save it to see it here
+            View a deck and save it to see it here
           </Text>
         </View>
       </SafeAreaView>
@@ -129,8 +123,8 @@ const styles = StyleSheet.create({
     paddingBottom: 8,
   },
   title: {
-    color: '#f0c040',
-    fontSize: 24,
+    color: '#e8e8f0',
+    fontSize: 22,
     fontWeight: '800',
   },
   count: {
@@ -182,10 +176,6 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     padding: 40,
-  },
-  emptyIcon: {
-    fontSize: 48,
-    marginBottom: 16,
   },
   emptyTitle: {
     color: '#e8e8f0',
