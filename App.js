@@ -1,5 +1,6 @@
 import React from 'react';
 import { StatusBar } from 'react-native';
+import { SafeAreaProvider } from 'react-native-safe-area-context';
 import { NavigationContainer, DarkTheme } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import DeckViewerScreen from './src/screens/DeckViewerScreen';
@@ -65,11 +66,13 @@ function AppTabs() {
 
 export default function App() {
   return (
-    <DeckProvider>
-      <NavigationContainer theme={appTheme}>
-        <StatusBar barStyle="light-content" backgroundColor="#0a0a1a" />
-        <AppTabs />
-      </NavigationContainer>
-    </DeckProvider>
+    <SafeAreaProvider>
+      <DeckProvider>
+        <NavigationContainer theme={appTheme}>
+          <StatusBar barStyle="light-content" backgroundColor="#0a0a1a" />
+          <AppTabs />
+        </NavigationContainer>
+      </DeckProvider>
+    </SafeAreaProvider>
   );
 }

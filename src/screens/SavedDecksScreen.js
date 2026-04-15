@@ -1,9 +1,11 @@
 import React, { useState, useMemo, useCallback } from 'react';
 import {
   View, Text, FlatList, Pressable, Alert,
-  StyleSheet, SafeAreaView,
+  StyleSheet,
 } from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
 import { useNavigation } from '@react-navigation/native';
+import { useBottomTabBarHeight } from '@react-navigation/bottom-tabs';
 import SavedDeckRow from '../components/SavedDeckRow';
 import cardData from '../data/cardDataProvider';
 import { useDeckContext } from '../context/DeckContext';
@@ -11,6 +13,7 @@ import { useDeckContext } from '../context/DeckContext';
 export default function SavedDecksScreen() {
   const { savedDecks: decks, onDeckLoad, onDeckDelete } = useDeckContext();
   const navigation = useNavigation();
+  const tabBarHeight = useBottomTabBarHeight();
   const [groupBy, setGroupBy] = useState('none');
 
   const handleLoad = useCallback((index) => {
@@ -63,7 +66,7 @@ export default function SavedDecksScreen() {
 
   if (decks.length === 0) {
     return (
-      <SafeAreaView style={styles.safe}>
+      <SafeAreaView style={styles.safe} edges={['top']}>
         <View style={styles.emptyContainer}>
           <Text style={styles.emptyTitle}>No Saved Decks</Text>
           <Text style={styles.emptySubtitle}>
@@ -75,7 +78,7 @@ export default function SavedDecksScreen() {
   }
 
   return (
-    <SafeAreaView style={styles.safe}>
+    <SafeAreaView style={styles.safe} edges={['top']}>
       <View style={styles.header}>
         <Text style={styles.title}>Saved Decks</Text>
         <Text style={styles.count}>{decks.length}</Text>
@@ -112,7 +115,7 @@ export default function SavedDecksScreen() {
             ))}
           </View>
         )}
-        contentContainerStyle={styles.list}
+        contentContainerStyle={[styles.list, { paddingBottom: tabBarHeight + 16 }]}
         showsVerticalScrollIndicator={false}
       />
     </SafeAreaView>
