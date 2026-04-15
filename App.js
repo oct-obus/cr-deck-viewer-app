@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import {
-  View, Text, Pressable, StatusBar,
+  View, Text, Pressable, StatusBar, Alert,
   StyleSheet, SafeAreaView,
 } from 'react-native';
 import DeckViewerScreen from './src/screens/DeckViewerScreen';
@@ -29,8 +29,12 @@ export default function App() {
   }, [savedDecks]);
 
   const handleDeckDelete = useCallback(async (index) => {
-    const newDecks = await deleteDeck(index);
-    setSavedDecks(newDecks);
+    try {
+      const newDecks = await deleteDeck(index);
+      setSavedDecks(newDecks);
+    } catch (e) {
+      Alert.alert('Delete Failed', e.message);
+    }
   }, []);
 
   return (

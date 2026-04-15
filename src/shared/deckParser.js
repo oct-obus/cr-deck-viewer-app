@@ -41,23 +41,3 @@ export function parseDeckString(input) {
 
   return { cardIds, towerTroop, slots };
 }
-
-export function parsePlayerTag(input) {
-  input = input.trim();
-  const urlMatch = input.match(/royaleapi\.com\/player\/([A-Za-z0-9]+)/);
-  if (urlMatch) return urlMatch[1].toUpperCase();
-  const idMatch = input.match(/[&?]id=([A-Za-z0-9]+)/);
-  if (idMatch) return idMatch[1].toUpperCase();
-  input = input.replace(/^(%23|#)/, '');
-  input = input.split(/\s/)[0];
-  if (/^[A-Za-z0-9]+$/.test(input)) return input.toUpperCase();
-  return null;
-}
-
-export function battleCardsToSlots(cards) {
-  return cards.map((c, i) => {
-    if (i < 2 && c.evolutionLevel === 1) return 1;
-    if (i === 2 && c.evolutionLevel === 2) return 1;
-    return 0;
-  });
-}

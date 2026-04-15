@@ -13,7 +13,11 @@ export async function getSavedDecks() {
 }
 
 export async function setSavedDecks(decks) {
-  await AsyncStorage.setItem(STORAGE_KEY, JSON.stringify(decks));
+  try {
+    await AsyncStorage.setItem(STORAGE_KEY, JSON.stringify(decks));
+  } catch (e) {
+    throw new Error('Failed to save decks: ' + e.message);
+  }
 }
 
 export async function saveDeck(deck, existingDecks) {

@@ -59,14 +59,18 @@ export default function DeckViewerScreen({ onDeckSaved, savedDecks, loadedDeck }
   }, [deckCardIds]);
 
   const confirmSave = useCallback(async () => {
-    const newDecks = await saveDeck({
-      name: saveName || 'Unnamed Deck',
-      cardIds: deckCardIds,
-      tt: towerTroop,
-      slots: [],
-    }, savedDecks);
-    onDeckSaved(newDecks);
-    setShowSaveModal(false);
+    try {
+      const newDecks = await saveDeck({
+        name: saveName || 'Unnamed Deck',
+        cardIds: deckCardIds,
+        tt: towerTroop,
+        slots: [],
+      }, savedDecks);
+      onDeckSaved(newDecks);
+      setShowSaveModal(false);
+    } catch (e) {
+      Alert.alert('Save Failed', e.message);
+    }
   }, [saveName, deckCardIds, towerTroop, savedDecks, onDeckSaved]);
 
   const handleCopyToGame = useCallback(() => {
@@ -85,7 +89,8 @@ export default function DeckViewerScreen({ onDeckSaved, savedDecks, loadedDeck }
     if (!compact) return;
     const url = `https://clash.2d.rocks/?d=${compact}`;
     try {
-      await Share.share({ url });
+      const shareContent = Platform.OS === 'ios' ? { url } : { message: url };
+      await Share.share(shareContent);
     } catch {}
   }, [deckCardIds, towerTroop]);
 

@@ -28,17 +28,6 @@ export function getCardImage(card, index) {
   return card.localIcon;
 }
 
-// Get sorted array of all cards for the picker
-export function getAllCards() {
-  return Object.entries(cardData)
-    .map(([id, card]) => ({ id, ...card }))
-    .sort((a, b) => {
-      // Sort by elixir cost, then name
-      if (a.elixir !== b.elixir) return a.elixir - b.elixir;
-      return a.name.localeCompare(b.name);
-    });
-}
-
 // Get card type from ID
 export function getCardType(id) {
   if (id.startsWith('27')) return 'building';
