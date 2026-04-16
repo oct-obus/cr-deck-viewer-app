@@ -1,5 +1,11 @@
-// Compact deck URL encoding — shared between web and React Native
+// Compact deck URL encoding — Approach B: type header + varint offsets + base62
+//
 // Wire format: [version=1] [payloadLen] [typeHeader:2] [varint offset × 8] [varint towerTroop?]
+//
+// Type header: 2 bits per card position (8 cards = 16 bits = 2 bytes)
+//   0 = troop (26xxxxxx), 1 = building (27xxxxxx), 2 = spell (28xxxxxx)
+// Offsets: distance from type base (e.g., 26000015 → type 0, offset 15)
+// Tower troop: offset from 159000000 base
 
 const BASE62 = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz';
 const TYPE_BASES = [26000000, 27000000, 28000000];
@@ -79,6 +85,7 @@ export function encodeDeck(cardIds, towerTroop) {
   for (const off of offsets) writeVarint(off, payload);
   if (towerTroop) writeVarint(Number(towerTroop) - TT_BASE, payload);
 
+  // Version byte (nonzero) prevents leading-zero loss in base62 roundtrip
   return toBase62([VERSION, payload.length, ...payload]);
 }
 

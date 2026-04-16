@@ -1,6 +1,7 @@
 // Card data provider for React Native
 import rawCards from './cards.json';
 import cardImages from './cardImages';
+import { resolveCardImageKey } from '../shared/slotUtils.js';
 
 // Enrich card data with local image references
 const cardData = {};
@@ -19,13 +20,9 @@ export default cardData;
 // Get the local image source for a card at a given deck position
 export function getCardImage(card, index) {
   if (!card) return null;
-  if (index === 0 && card.localEvoIcon) return card.localEvoIcon;
-  if (index === 1 && card.localHeroIcon) return card.localHeroIcon;
-  if (index === 2) {
-    if (card.localEvoIcon) return card.localEvoIcon;
-    if (card.localHeroIcon) return card.localHeroIcon;
-  }
-  return card.localIcon;
+  const key = resolveCardImageKey(card, index);
+  const localKey = 'local' + key.charAt(0).toUpperCase() + key.slice(1);
+  return card[localKey] || card.localIcon;
 }
 
 // Get card type from ID
