@@ -1,6 +1,6 @@
 import React, { useState, useCallback, useEffect } from 'react';
 import {
-  View, Text, ScrollView, Pressable, Alert, ActionSheetIOS,
+  View, Text, ScrollView, Pressable, Alert,
   StyleSheet, TextInput, Linking, Share,
   KeyboardAvoidingView, Platform,
 } from 'react-native';
@@ -149,22 +149,6 @@ export default function DeckViewerScreen() {
     } catch {}
   }, [deckCardIds, towerTroop]);
 
-  const handleActions = useCallback(() => {
-    if (Platform.OS === 'ios') {
-      ActionSheetIOS.showActionSheetWithOptions(
-        {
-          options: ['Copy to Clash Royale', 'Share Link', 'Save Deck', 'Cancel'],
-          cancelButtonIndex: 3,
-        },
-        (index) => {
-          if (index === 0) handleCopyToGame();
-          else if (index === 1) handleShare();
-          else if (index === 2) handleSave();
-        },
-      );
-    }
-  }, [handleCopyToGame, handleShare, handleSave]);
-
   return (
     <SafeAreaView style={styles.safe} edges={['top']}>
       <KeyboardAvoidingView
@@ -215,23 +199,17 @@ export default function DeckViewerScreen() {
           {deckCardIds.length > 0 && (
             <>
               <DeckDisplay cardIds={deckCardIds} />
-              {Platform.OS === 'ios' ? (
-                <Pressable style={styles.actionsBtn} onPress={handleActions}>
-                  <Text style={styles.actionsBtnText}>Actions...</Text>
+              <View style={styles.deckActions}>
+                <Pressable style={styles.actionBtn} onPress={handleCopyToGame}>
+                  <Text style={styles.actionBtnText}>Copy to CR</Text>
                 </Pressable>
-              ) : (
-                <View style={styles.deckActions}>
-                  <Pressable style={styles.actionBtn} onPress={handleCopyToGame}>
-                    <Text style={styles.actionBtnText}>Copy to CR</Text>
-                  </Pressable>
-                  <Pressable style={styles.actionBtn} onPress={handleShare}>
-                    <Text style={styles.actionBtnText}>Share Link</Text>
-                  </Pressable>
-                  <Pressable style={styles.saveBtn} onPress={handleSave}>
-                    <Text style={styles.saveBtnText}>Save Deck</Text>
-                  </Pressable>
-                </View>
-              )}
+                <Pressable style={styles.actionBtn} onPress={handleShare}>
+                  <Text style={styles.actionBtnText}>Share Link</Text>
+                </Pressable>
+                <Pressable style={styles.saveBtn} onPress={handleSave}>
+                  <Text style={styles.saveBtnText}>Save Deck</Text>
+                </Pressable>
+              </View>
             </>
           )}
         </ScrollView>
@@ -320,18 +298,6 @@ const styles = StyleSheet.create({
     color: '#e8e8f0',
     fontSize: 14,
     fontWeight: '600',
-  },
-  actionsBtn: {
-    backgroundColor: 'rgba(255,255,255,0.1)',
-    paddingVertical: 14,
-    borderRadius: 12,
-    alignItems: 'center',
-    marginTop: 4,
-  },
-  actionsBtnText: {
-    color: '#f0c040',
-    fontSize: 16,
-    fontWeight: '700',
   },
   deckActions: {
     flexDirection: 'row',
