@@ -1,4 +1,3 @@
-// Auto deck naming — shared between web and React Native
 import { CARD_ABBREVS, OMIT_FROM_NAME, CYCLE_CARDS, BAIT_CARDS } from './constants.js';
 import { resolveSlotType } from './slotUtils.js';
 
