@@ -163,7 +163,7 @@ const styles = StyleSheet.create({
   },
   list: {
     paddingHorizontal: 16,
-    paddingBottom: 40,
+    paddingBottom: 100,
   },
   groupHeader: {
     flexDirection: 'row',

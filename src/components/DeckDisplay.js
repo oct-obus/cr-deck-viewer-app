@@ -8,7 +8,7 @@ let GlassView = View;
 if (Platform.OS === 'ios') {
   try {
     const lg = require('@callstack/liquid-glass');
-    if (lg.isLiquidGlassSupported()) GlassView = lg.LiquidGlassView;
+    if (lg.isLiquidGlassSupported) GlassView = lg.LiquidGlassView;
   } catch {}
 }
 
