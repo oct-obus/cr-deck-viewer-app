@@ -1,4 +1,4 @@
-import React, { createContext, useState, useEffect, useCallback, useContext } from 'react';
+import React, { createContext, useState, useEffect, useCallback, useContext, useMemo } from 'react';
 import { Alert } from 'react-native';
 import { getSavedDecks, deleteDeck } from '../data/deckStorage';
 
@@ -30,14 +30,16 @@ export function DeckProvider({ children }) {
     }
   }, []);
 
+  const contextValue = useMemo(() => ({
+    savedDecks,
+    loadedDeck,
+    onDeckSaved: setSavedDecks,
+    onDeckLoad: handleDeckLoad,
+    onDeckDelete: handleDeckDelete,
+  }), [savedDecks, loadedDeck, handleDeckLoad, handleDeckDelete]);
+
   return (
-    <DeckContext.Provider value={{
-      savedDecks,
-      loadedDeck,
-      onDeckSaved: setSavedDecks,
-      onDeckLoad: handleDeckLoad,
-      onDeckDelete: handleDeckDelete,
-    }}>
+    <DeckContext.Provider value={contextValue}>
       {children}
     </DeckContext.Provider>
   );

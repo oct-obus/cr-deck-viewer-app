@@ -2,7 +2,7 @@ import React from 'react';
 import { View, Image, Text, StyleSheet } from 'react-native';
 import { RARITY_COLORS } from '../shared/constants';
 import { getCardImage } from '../data/cardDataProvider';
-import { colors, radii, fontSize as fs, fontWeight as fw, shared } from '../shared/theme';
+import { colors, radii, fontSize as fs, fontWeight as fw } from '../shared/theme';
 
 export default function DeckCard({ card, index, size = 'normal', compact = false }) {
   if (!card) {

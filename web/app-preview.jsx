@@ -1,6 +1,6 @@
 import React from 'react';
 import { createRoot } from 'react-dom/client';
-import { View, StyleSheet } from 'react-native';
+import { View, Text, StyleSheet } from 'react-native';
 import App from '../App';
 
 // Seed AsyncStorage with sample saved decks for preview
@@ -39,7 +39,7 @@ AsyncStorage.setItem('cr_saved_decks', JSON.stringify(SAMPLE_DECKS));
 function PhoneFrame({ children, width = 393, height = 852, label }) {
   return (
     <View style={frameStyles.wrapper}>
-      {label && <View style={frameStyles.labelBar}><text style={frameStyles.labelText}>{label}</text></View>}
+      {label && <View style={frameStyles.labelBar}><Text style={frameStyles.labelText}>{label}</Text></View>}
       <View style={[frameStyles.phone, { width, height }]}>
         {children}
       </View>

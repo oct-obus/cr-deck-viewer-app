@@ -60,23 +60,8 @@ export const TAB_BAR_PADDING = 100;
 import { StyleSheet } from 'react-native';
 
 export const shared = StyleSheet.create({
-  safeScreen: {
-    flex: 1,
-    backgroundColor: colors.background,
-  },
-  screenTitle: {
-    color: colors.textPrimary,
-    fontSize: fontSize.xxl,
-    fontWeight: fontWeight.heavy,
-  },
   thumbImage: {
     width: '100%',
     height: '100%',
-  },
-  thumbWrapper: {
-    borderRadius: radii.sm,
-    borderWidth: 1.5,
-    overflow: 'hidden',
-    backgroundColor: colors.cardImageBg,
   },
 });

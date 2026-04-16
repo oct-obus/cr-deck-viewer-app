@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 import { GlassView, liquidGlassSupported } from './GlassView';
 import DeckCard from './DeckCard';
@@ -11,7 +11,7 @@ export default function DeckDisplay({ cardIds }) {
   const { settings } = useSettings();
   if (!cardIds || cardIds.length === 0) return null;
 
-  const stats = computeDeckStats(cardIds, cardData);
+  const stats = useMemo(() => computeDeckStats(cardIds, cardData), [cardIds]);
   const is1x8 = settings.deckLayout === '1x8';
 
   return (

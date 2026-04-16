@@ -44,6 +44,14 @@ jobs:
             DEVELOPMENT_TEAM="" \
             | tee ${{ runner.temp }}/xcodebuild.log | tail -50
 
+      - name: Upload build log on failure
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: xcodebuild-log
+          path: ${{ runner.temp }}/xcodebuild.log
+          retention-days: 7
+
       - name: Create unsigned IPA
         run: |
           ARCHIVE_PATH="${{ runner.temp }}/CRDeckViewer.xcarchive"

@@ -45,7 +45,7 @@ export default function SavedDecksScreen() {
 
     const groups = {};
     decks.forEach((deck, i) => {
-      const wincons = deck.cardIds.filter(id => cardData[id]?.isWinCondition);
+      const wincons = (deck.cardIds || []).filter(id => cardData[id]?.isWinCondition);
       let key;
       if (wincons.length === 0) {
         key = 'Other';

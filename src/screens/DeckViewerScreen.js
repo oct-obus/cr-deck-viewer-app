@@ -16,7 +16,7 @@ import { useDeckContext } from '../context/DeckContext';
 import { colors, radii, fontSize as fs, fontWeight as fw, TAB_BAR_PADDING } from '../shared/theme';
 
 export default function DeckViewerScreen() {
-  const { onDeckSaved, savedDecks, loadedDeck } = useDeckContext();
+  const { onDeckSaved, loadedDeck } = useDeckContext();
   const [inputText, setInputText] = useState('');
   const [deckCardIds, setDeckCardIds] = useState([]);
   const [towerTroop, setTowerTroop] = useState(null);
@@ -93,7 +93,7 @@ export default function DeckViewerScreen() {
                   name: name || suggested || 'Unnamed Deck',
                   cardIds: deckCardIds,
                   tt: towerTroop,
-                }, savedDecks);
+                });
                 onDeckSaved(newDecks);
               } catch (e) {
                 Alert.alert('Save Failed', e.message);
@@ -116,7 +116,7 @@ export default function DeckViewerScreen() {
                 name: suggested || 'Unnamed Deck',
                 cardIds: deckCardIds,
                 tt: towerTroop,
-              }, savedDecks);
+              });
               onDeckSaved(newDecks);
             } catch (e) {
               Alert.alert('Save Failed', e.message);
@@ -125,7 +125,7 @@ export default function DeckViewerScreen() {
         },
       ]);
     }
-  }, [deckCardIds, towerTroop, savedDecks, onDeckSaved]);
+  }, [deckCardIds, towerTroop, onDeckSaved]);
 
   const handleCopyToGame = useCallback(() => {
     if (deckCardIds.length !== 8) return;
@@ -145,7 +145,9 @@ export default function DeckViewerScreen() {
     try {
       const shareContent = Platform.OS === 'ios' ? { url } : { message: url };
       await Share.share(shareContent);
-    } catch {}
+    } catch (e) {
+      Alert.alert('Share Failed', e.message);
+    }
   }, [deckCardIds, towerTroop]);
 
   return (
@@ -175,10 +177,8 @@ export default function DeckViewerScreen() {
                     placeholderTextColor={colors.textSubtle}
                     value={inputText}
                     onChangeText={setInputText}
-                    multiline
                     autoCorrect={false}
                     autoCapitalize="none"
-                    textAlignVertical="top"
                     returnKeyType="go"
                     onSubmitEditing={handleShowDeck}
                   />
@@ -265,7 +265,6 @@ const styles = StyleSheet.create({
     color: colors.textPrimary,
     fontSize: fs.md,
     minHeight: 80,
-    textAlignVertical: 'top',
     marginTop: 10,
     marginBottom: 10,
   },

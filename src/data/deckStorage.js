@@ -12,7 +12,7 @@ export async function getSavedDecks() {
   }
 }
 
-export async function setSavedDecks(decks) {
+async function setSavedDecks(decks) {
   try {
     await AsyncStorage.setItem(STORAGE_KEY, JSON.stringify(decks));
   } catch (e) {
@@ -20,12 +20,13 @@ export async function setSavedDecks(decks) {
   }
 }
 
-export async function saveDeck(deck, existingDecks) {
-  const decks = existingDecks ? [...existingDecks] : await getSavedDecks();
+export async function saveDeck(deck) {
+  const decks = await getSavedDecks();
   const sortedNew = [...deck.cardIds].sort().join(',');
+  const ttNew = deck.tt || '';
 
   const dupeIndex = decks.findIndex(d =>
-    [...d.cardIds].sort().join(',') === sortedNew
+    [...d.cardIds].sort().join(',') === sortedNew && (d.tt || '') === ttNew
   );
 
   const newEntry = {

@@ -32,8 +32,6 @@ export function SettingsProvider({ children }) {
     });
   }, []);
 
-  if (!loaded) return null;
-
   return (
     <SettingsContext.Provider value={{ settings, updateSetting }}>
       {children}

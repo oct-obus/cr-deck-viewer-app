@@ -3,12 +3,12 @@
 export function computeDeckStats(cardIds, cardData) {
   if (!cardIds || cardIds.length === 0) return null;
 
-  const cards = cardIds.map(id => cardData[id]).filter(Boolean);
-  const elixirs = cards.map(c => c.elixir || 0);
+  // Use 0 for unknown cards so divisor stays at 8
+  const elixirs = cardIds.map(id => cardData[id]?.elixir || 0);
   const totalElixir = elixirs.reduce((s, e) => s + e, 0);
-  const avgElixir = cards.length > 0 ? (totalElixir / cards.length).toFixed(1) : '0.0';
+  const avgElixir = (totalElixir / cardIds.length).toFixed(1);
 
-  // 4-card cycle stats
+  // 4-card cycle stats (only meaningful with a full 8-card deck)
   const sorted = [...elixirs].sort((a, b) => a - b);
   const lowest4 = sorted.slice(0, 4);
   const highest4 = sorted.slice(-4);
