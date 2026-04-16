@@ -5,14 +5,14 @@ import { RARITY_COLORS } from '../shared/constants';
 import { getCardImage } from '../data/cardDataProvider';
 import cardData from '../data/cardDataProvider';
 
-const THUMB_SIZES = {
-  small:  { width: 24, height: 30 },
-  medium: { width: 32, height: 40 },
-  large:  { width: 42, height: 52 },
+const THUMB_HEIGHTS = {
+  small:  30,
+  medium: 40,
+  large:  48,
 };
 
 export default function SavedDeckRow({ deck, index, onLoad, onDelete, size = 'medium' }) {
-  const thumbSize = THUMB_SIZES[size] || THUMB_SIZES.medium;
+  const thumbHeight = THUMB_HEIGHTS[size] || THUMB_HEIGHTS.medium;
 
   const cards = deck.cardIds.map((id, i) => {
     const card = cardData[id];
@@ -21,8 +21,10 @@ export default function SavedDeckRow({ deck, index, onLoad, onDelete, size = 'me
     const rarityColor = RARITY_COLORS[card.rarity] || '#444';
 
     return (
-      <View key={i} style={[styles.thumb, thumbSize, { borderColor: rarityColor }]}>
-        <Image source={imageSource} style={styles.thumbImage} resizeMode="cover" />
+      <View key={i} style={styles.thumbCell}>
+        <View style={[styles.thumb, { height: thumbHeight, borderColor: rarityColor }]}>
+          <Image source={imageSource} style={styles.thumbImage} resizeMode="cover" />
+        </View>
       </View>
     );
   });
@@ -66,13 +68,16 @@ const styles = StyleSheet.create({
   },
   cardsRow: {
     flexDirection: 'row',
-    flex: 0,
+    flexShrink: 1,
+  },
+  thumbCell: {
+    paddingHorizontal: 1,
   },
   thumb: {
+    aspectRatio: 3 / 4,
     borderRadius: 4,
     borderWidth: 1.5,
     overflow: 'hidden',
-    marginRight: 2,
     backgroundColor: '#1a1a2e',
   },
   thumbImage: {

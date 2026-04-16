@@ -35,6 +35,7 @@ const sizeStyles = {
   normal: { width: 80 },
   small: { width: 60 },
   tiny: { width: 44 },
+  grid: { width: '100%', marginHorizontal: 0 },
 };
 
 const styles = StyleSheet.create({

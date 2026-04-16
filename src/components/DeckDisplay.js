@@ -27,7 +27,9 @@ export default function DeckDisplay({ cardIds }) {
       ) : (
         <View style={styles.grid}>
           {cardIds.map((id, i) => (
-            <DeckCard key={i} card={cardData[id]} index={i} />
+            <View key={i} style={styles.gridCell}>
+              <DeckCard card={cardData[id]} index={i} size="grid" />
+            </View>
           ))}
         </View>
       )}
@@ -58,7 +60,12 @@ const styles = StyleSheet.create({
   grid: {
     flexDirection: 'row',
     flexWrap: 'wrap',
-    justifyContent: 'center',
+  },
+  gridCell: {
+    width: '25%',
+    alignItems: 'center',
+    paddingHorizontal: 2,
+    paddingVertical: 2,
   },
   row: {
     flexDirection: 'row',

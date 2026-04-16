@@ -5,14 +5,14 @@ import { RARITY_COLORS } from '../shared/constants';
 import { getCardImage } from '../data/cardDataProvider';
 import cardData from '../data/cardDataProvider';
 
-const THUMB_SIZES = {
-  small:  { width: 28, height: 34 },
-  medium: { width: 34, height: 42 },
-  large:  { width: 42, height: 52 },
+const THUMB_HEIGHTS = {
+  small:  28,
+  medium: 36,
+  large:  44,
 };
 
 export default function SavedDeckGridItem({ deck, index, onLoad, onDelete, size = 'medium', numColumns = 2 }) {
-  const thumbSize = THUMB_SIZES[size] || THUMB_SIZES.medium;
+  const thumbHeight = THUMB_HEIGHTS[size] || THUMB_HEIGHTS.medium;
 
   const cards = deck.cardIds.map((id, i) => {
     const card = cardData[id];
@@ -21,8 +21,10 @@ export default function SavedDeckGridItem({ deck, index, onLoad, onDelete, size 
     const rarityColor = RARITY_COLORS[card.rarity] || '#444';
 
     return (
-      <View key={i} style={[styles.thumb, thumbSize, { borderColor: rarityColor }]}>
-        <Image source={imageSource} style={styles.thumbImage} resizeMode="cover" />
+      <View key={i} style={styles.thumbCell}>
+        <View style={[styles.thumb, { height: thumbHeight, borderColor: rarityColor }]}>
+          <Image source={imageSource} style={styles.thumbImage} resizeMode="cover" />
+        </View>
       </View>
     );
   });
@@ -59,14 +61,18 @@ const styles = StyleSheet.create({
   cardGrid: {
     flexDirection: 'row',
     flexWrap: 'wrap',
-    justifyContent: 'center',
     marginBottom: 8,
   },
+  thumbCell: {
+    width: '25%',
+    paddingHorizontal: 1,
+    paddingVertical: 1,
+  },
   thumb: {
+    aspectRatio: 3 / 4,
     borderRadius: 4,
     borderWidth: 1.5,
     overflow: 'hidden',
-    margin: 1,
     backgroundColor: '#1a1a2e',
   },
   thumbImage: {
