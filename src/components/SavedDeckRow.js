@@ -13,6 +13,7 @@ const THUMB_HEIGHTS = {
 
 export default function SavedDeckRow({ deck, index, onLoad, onDelete, size = 'medium' }) {
   const thumbHeight = THUMB_HEIGHTS[size] || THUMB_HEIGHTS.medium;
+  const stacked = size === 'medium' || size === 'large';
 
   const cards = deck.cardIds.map((id, i) => {
     const card = cardData[id];
@@ -21,7 +22,7 @@ export default function SavedDeckRow({ deck, index, onLoad, onDelete, size = 'me
     const rarityColor = RARITY_COLORS[card.rarity] || '#444';
 
     return (
-      <View key={i} style={styles.thumbCell}>
+      <View key={i} style={stacked ? styles.stackedThumbCell : styles.thumbCell}>
         <View style={[styles.thumb, { height: thumbHeight, borderColor: rarityColor }]}>
           <Image source={imageSource} style={styles.thumbImage} resizeMode="cover" />
         </View>
@@ -31,15 +32,41 @@ export default function SavedDeckRow({ deck, index, onLoad, onDelete, size = 'me
 
   const date = new Date(deck.savedAt).toLocaleDateString();
 
+  if (stacked) {
+    return (
+      <Pressable onPress={() => onLoad(index)}>
+        <GlassView
+          style={[styles.stackedRow, size === 'large' && styles.rowLarge]}
+          {...(liquidGlassSupported ? { effect: 'clear', colorScheme: 'dark', interactive: true } : {})}
+        >
+          <View style={styles.stackedCardsRow}>{cards}</View>
+          <View style={styles.stackedFooter}>
+            <View style={styles.stackedInfo}>
+              <Text style={styles.name} numberOfLines={1}>{deck.name}</Text>
+              <Text style={styles.date}>{date}</Text>
+            </View>
+            <Pressable
+              style={styles.deleteBtn}
+              onPress={() => onDelete(index)}
+              hitSlop={8}
+            >
+              <Text style={styles.deleteText}>✕</Text>
+            </Pressable>
+          </View>
+        </GlassView>
+      </Pressable>
+    );
+  }
+
   return (
     <Pressable onPress={() => onLoad(index)}>
       <GlassView
-        style={[styles.row, size === 'large' && styles.rowLarge]}
+        style={styles.row}
         {...(liquidGlassSupported ? { effect: 'clear', colorScheme: 'dark', interactive: true } : {})}
       >
       <View style={styles.cardsRow}>{cards}</View>
       <View style={styles.info}>
-        <Text style={[styles.name, size === 'small' && styles.nameSmall]} numberOfLines={1}>{deck.name}</Text>
+        <Text style={[styles.name, styles.nameSmall]} numberOfLines={1}>{deck.name}</Text>
         <Text style={styles.date}>{date}</Text>
       </View>
       <Pressable
@@ -55,6 +82,7 @@ export default function SavedDeckRow({ deck, index, onLoad, onDelete, size = 'me
 }
 
 const styles = StyleSheet.create({
+  // Small: horizontal row (cards | name/date | delete)
   row: {
     flexDirection: 'row',
     alignItems: 'center',
@@ -63,9 +91,6 @@ const styles = StyleSheet.create({
     padding: 10,
     marginBottom: 8,
   },
-  rowLarge: {
-    padding: 14,
-  },
   cardsRow: {
     flexDirection: 'row',
     flexShrink: 1,
@@ -73,6 +98,39 @@ const styles = StyleSheet.create({
   thumbCell: {
     paddingHorizontal: 1,
   },
+  info: {
+    flex: 1,
+    marginLeft: 10,
+  },
+
+  // Medium/Large: stacked (cards on top, name/date/delete below)
+  stackedRow: {
+    backgroundColor: 'rgba(16, 26, 50, 0.4)',
+    borderRadius: 12,
+    padding: 10,
+    marginBottom: 8,
+  },
+  rowLarge: {
+    padding: 14,
+  },
+  stackedCardsRow: {
+    flexDirection: 'row',
+    justifyContent: 'center',
+    marginBottom: 8,
+  },
+  stackedThumbCell: {
+    flex: 1,
+    paddingHorizontal: 1,
+  },
+  stackedFooter: {
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
+  stackedInfo: {
+    flex: 1,
+  },
+
+  // Shared styles
   thumb: {
     aspectRatio: 3 / 4,
     borderRadius: 4,
@@ -83,10 +141,6 @@ const styles = StyleSheet.create({
   thumbImage: {
     width: '100%',
     height: '100%',
-  },
-  info: {
-    flex: 1,
-    marginLeft: 10,
   },
   name: {
     color: '#e8e8f0',
