@@ -56,13 +56,13 @@ function App() {
   return (
     <SettingsProvider>
       <ScrollView style={{ flex: 1 }} contentContainerStyle={{ padding: 24 }}>
-        <Text style={{ color: '#e8e8f0', fontSize: 24, fontWeight: '900', marginBottom: 20 }}>Saved Decks — All Variations</Text>
-        <Section title="LIST VIEW — Small" view="list" size="small" />
-        <Section title="LIST VIEW — Medium" view="list" size="medium" />
-        <Section title="LIST VIEW — Large" view="list" size="large" />
-        <Section title="GRID VIEW — Small" view="grid" size="small" />
-        <Section title="GRID VIEW — Medium" view="grid" size="medium" />
-        <Section title="GRID VIEW — Large" view="grid" size="large" />
+        <Text style={{ color: '#e8e8f0', fontSize: 24, fontWeight: '900', marginBottom: 20 }}>Saved Decks - All Variations</Text>
+        <Section title="LIST VIEW - Small" view="list" size="small" />
+        <Section title="LIST VIEW - Medium" view="list" size="medium" />
+        <Section title="LIST VIEW - Large" view="list" size="large" />
+        <Section title="GRID VIEW - Small" view="grid" size="small" />
+        <Section title="GRID VIEW - Medium" view="grid" size="medium" />
+        <Section title="GRID VIEW - Large" view="grid" size="large" />
       </ScrollView>
     </SettingsProvider>
   );

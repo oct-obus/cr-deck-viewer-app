@@ -7,7 +7,7 @@ import SavedDecksScreen from '../src/screens/SavedDecksScreen';
 function App() {
   return (
     <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center', backgroundColor: '#111', minHeight: '100vh' }}>
-      <PhoneFrame width={393} height={852} label="Saved Decks — Grid View (Medium)">
+      <PhoneFrame width={393} height={852} label="Saved Decks - Grid View (Medium)">
         <ScreenHarness savedDecksView="grid" savedDeckSize="medium">
           <SavedDecksScreen />
         </ScreenHarness>

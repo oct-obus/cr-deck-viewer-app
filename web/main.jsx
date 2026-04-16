@@ -112,7 +112,7 @@ function PreviewContent() {
 
   return (
     <ScrollView style={{ flex: 1 }} contentContainerStyle={mainStyles.root}>
-      <Text style={mainStyles.heading}>CR Deck Viewer — Layout Preview</Text>
+      <Text style={mainStyles.heading}>CR Deck Viewer - Layout Preview</Text>
       <Text style={mainStyles.subtitle}>Dev tool for verifying layouts across screen sizes</Text>
 
       <SettingsBar />
@@ -131,7 +131,7 @@ function PreviewContent() {
       </View>
 
       <Text style={mainStyles.sectionTitle}>
-        Saved Decks — {isGrid ? 'Grid' : 'List'} View ({settings.savedDeckSize})
+        Saved Decks - {isGrid ? 'Grid' : 'List'} View ({settings.savedDeckSize})
       </Text>
       <View style={mainStyles.phoneRow}>
         <PhoneFrame width={375} label="iPhone SE">

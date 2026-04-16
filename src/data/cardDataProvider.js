@@ -3,7 +3,6 @@ import rawCards from './cards.json';
 import cardImages from './cardImages';
 import { resolveCardImageKey } from '../shared/slotUtils.js';
 
-// Enrich card data with local image references
 const cardData = {};
 for (const [id, card] of Object.entries(rawCards)) {
   const images = cardImages[id] || {};
@@ -17,7 +16,6 @@ for (const [id, card] of Object.entries(rawCards)) {
 
 export default cardData;
 
-// Get the local image source for a card at a given deck position
 export function getCardImage(card, index) {
   if (!card) return null;
   const key = resolveCardImageKey(card, index);

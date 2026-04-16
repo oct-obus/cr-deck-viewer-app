@@ -1,4 +1,4 @@
-// Web-specific card data provider — uses CDN URLs from cards.json instead of require()
+// Card data provider for web (CDN URLs instead of require())
 import rawCards from './cards.json';
 import { resolveCardImageKey } from '../shared/slotUtils.js';
 

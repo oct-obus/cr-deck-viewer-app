@@ -105,7 +105,7 @@ export default function DeckViewerScreen() {
         suggested,
       );
     } else {
-      // Android fallback — Alert.prompt not available
+      // Alert.prompt is iOS-only
       Alert.alert('Save Deck', `Save as "${suggested}"?`, [
         { text: 'Cancel', style: 'cancel' },
         {

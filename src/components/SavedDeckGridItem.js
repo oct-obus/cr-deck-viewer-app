@@ -34,7 +34,6 @@ export default function SavedDeckGridItem({ deck, index, onLoad, onDelete, size 
     );
   });
 
-  // Calculate width based on number of columns, accounting for gaps
   const itemWidth = `${Math.floor(100 / numColumns) - 1}%`;
 
   return (

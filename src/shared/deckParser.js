@@ -1,9 +1,7 @@
-// Deck input parsing — shared between web and React Native
-// Platform-independent: no DOM dependencies
+// Deck input parsing, shared between web and React Native
 import { encodeDeck, decodeDeck } from './deckUrl.js';
 
-// Parse a deck string into { cardIds, towerTroop, slots }
-// Returns null if parsing fails, with an error message
+// Returns { cardIds, towerTroop, slots } or { error }
 export function parseDeckString(input) {
   if (!input || typeof input !== 'string') {
     return { error: 'Please paste a deck share link.' };

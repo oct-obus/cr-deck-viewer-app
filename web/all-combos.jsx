@@ -85,12 +85,12 @@ function AllCombos() {
 
         <Text style={{ color: '#fff', fontSize: 20, fontWeight: '900', marginBottom: 16, marginTop: 24, borderBottomWidth: 2, borderBottomColor: '#f0c040', paddingBottom: 8 }}>SAVED DECKS</Text>
         
-        <ComboSection title="List View — Small" savedDecksView="list" savedDeckSize="small" />
-        <ComboSection title="List View — Medium" savedDecksView="list" savedDeckSize="medium" />
-        <ComboSection title="List View — Large" savedDecksView="list" savedDeckSize="large" />
-        <ComboSection title="Grid View — Small" savedDecksView="grid" savedDeckSize="small" />
-        <ComboSection title="Grid View — Medium" savedDecksView="grid" savedDeckSize="medium" />
-        <ComboSection title="Grid View — Large" savedDecksView="grid" savedDeckSize="large" />
+        <ComboSection title="List View - Small" savedDecksView="list" savedDeckSize="small" />
+        <ComboSection title="List View - Medium" savedDecksView="list" savedDeckSize="medium" />
+        <ComboSection title="List View - Large" savedDecksView="list" savedDeckSize="large" />
+        <ComboSection title="Grid View - Small" savedDecksView="grid" savedDeckSize="small" />
+        <ComboSection title="Grid View - Medium" savedDecksView="grid" savedDeckSize="medium" />
+        <ComboSection title="Grid View - Large" savedDecksView="grid" savedDeckSize="large" />
       </ScrollView>
     </SettingsProvider>
   );

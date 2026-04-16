@@ -42,12 +42,12 @@ function App() {
       <View style={{ width: 393, margin: '0 auto', backgroundColor: '#0f172a', paddingTop: 16, paddingBottom: 32 }}>
         <Text style={{ color: '#fff', fontSize: 20, fontWeight: '700', textAlign: 'center', marginBottom: 20 }}>iPhone 14 Pro (393pt)</Text>
         
-        <Section title="LIST VIEW — Small" viewMode="list" entrySize="small" />
-        <Section title="LIST VIEW — Medium" viewMode="list" entrySize="medium" />
-        <Section title="LIST VIEW — Large" viewMode="list" entrySize="large" />
-        <Section title="GRID VIEW — Small" viewMode="grid" entrySize="small" />
-        <Section title="GRID VIEW — Medium" viewMode="grid" entrySize="medium" />
-        <Section title="GRID VIEW — Large" viewMode="grid" entrySize="large" />
+        <Section title="LIST VIEW - Small" viewMode="list" entrySize="small" />
+        <Section title="LIST VIEW - Medium" viewMode="list" entrySize="medium" />
+        <Section title="LIST VIEW - Large" viewMode="list" entrySize="large" />
+        <Section title="GRID VIEW - Small" viewMode="grid" entrySize="small" />
+        <Section title="GRID VIEW - Medium" viewMode="grid" entrySize="medium" />
+        <Section title="GRID VIEW - Large" viewMode="grid" entrySize="large" />
       </View>
     </SettingsProvider>
   );

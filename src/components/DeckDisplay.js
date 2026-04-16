@@ -41,7 +41,7 @@ export default function DeckDisplay({ cardIds }) {
       {approx && (
         <View style={styles.warningBanner}>
           <Text style={styles.warningText}>
-            {unknownCount} unrecognized card{unknownCount > 1 ? 's' : ''} — app data may be outdated
+            {unknownCount} unrecognized card{unknownCount > 1 ? 's' : ''} - app data may be outdated
           </Text>
         </View>
       )}

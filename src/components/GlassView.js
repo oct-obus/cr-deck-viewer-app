@@ -1,4 +1,4 @@
-// Shared Liquid Glass wrapper — falls back to plain View on non-iOS / older iOS.
+// Liquid Glass wrapper, falls back to plain View pre-iOS 26
 import { View, Platform } from 'react-native';
 
 let GlassViewComponent = View;

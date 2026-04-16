@@ -5,7 +5,6 @@ import { SettingsProvider, useSettings } from '../src/context/SettingsContext';
 import { DeckProvider, useDeckContext } from '../src/context/DeckContext';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
-// Pre-populate sample decks
 const SAMPLE_DECKS = [
   {
     name: 'Hog 2.6 Cycle',
@@ -35,7 +34,6 @@ const SAMPLE_DECKS = [
 
 AsyncStorage.setItem('cr_saved_decks', JSON.stringify(SAMPLE_DECKS));
 
-// Phone frame wrapper that mimics iPhone 14 Pro dimensions
 export function PhoneFrame({ children, width = 393, height = 852, label }) {
   return (
     <View style={frameStyles.wrapper}>
@@ -47,7 +45,6 @@ export function PhoneFrame({ children, width = 393, height = 852, label }) {
   );
 }
 
-// Wraps a screen with all necessary providers
 export function ScreenHarness({ children, deckLayout, savedDecksView, savedDeckSize }) {
   return (
     <SafeAreaProvider>
@@ -83,7 +80,6 @@ export function DeckInjector({ cardIds, children }) {
 
   React.useEffect(() => {
     if (!injected && cardIds) {
-      // Simulate loading a deck by using loadedDeck via DeckContext
       setInjected(true);
     }
   }, [injected, cardIds]);

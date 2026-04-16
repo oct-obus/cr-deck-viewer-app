@@ -1,4 +1,4 @@
-// Compact deck URL encoding — Approach B: type header + varint offsets + base62
+// Compact deck URL encoding: type header + varint offsets + base62
 //
 // Wire format: [version=1] [payloadLen] [typeHeader:2] [varint offset × 8] [varint towerTroop?]
 //

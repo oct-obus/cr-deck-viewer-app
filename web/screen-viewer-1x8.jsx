@@ -16,7 +16,7 @@ function ViewerWithDeck() {
 function App() {
   return (
     <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center', backgroundColor: '#111', minHeight: '100vh' }}>
-      <PhoneFrame width={393} height={852} label="Viewer — 1×8 Row">
+      <PhoneFrame width={393} height={852} label="Viewer - 1×8 Row">
         <ScreenHarness deckLayout="1x8">
           <ViewerWithDeck />
         </ScreenHarness>

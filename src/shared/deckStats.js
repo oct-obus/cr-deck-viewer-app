@@ -1,4 +1,4 @@
-// Deck stats computation
+
 
 export function computeDeckStats(cardIds, cardData) {
   if (!cardIds || cardIds.length === 0) return null;
@@ -15,7 +15,6 @@ export function computeDeckStats(cardIds, cardData) {
   const totalElixir = knownElixirs.reduce((s, e) => s + e, 0);
   const avgElixir = (totalElixir / knownCount).toFixed(1);
 
-  // 4-card cycle stats — only meaningful with a full 8-card deck
   let cycleMin = null, cycleAvg = null, cycleMax = null;
   if (unknownCount === 0) {
     const sorted = [...knownElixirs].sort((a, b) => a - b);

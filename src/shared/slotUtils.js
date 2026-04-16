@@ -11,9 +11,8 @@
 
 /**
  * Returns the display icon URL for a card at a given deck position.
- * Used by the website (web URLs); the React Native app uses resolveCardImageKey instead.
  * @param {object} card  - card data object with .icon, .evoIcon, .heroIcon
- * @param {number} index - 0-based position in the deck (0–7)
+ * @param {number} index - 0-based position in the deck (0-7)
  * @returns {string} icon URL
  */
 export function resolveCardIcon(card, index) {
@@ -46,9 +45,8 @@ export function resolveSlotType(card, index) {
 
 /**
  * Returns which image property key to use: 'icon', 'evoIcon', or 'heroIcon'.
- * Useful in React Native where images are require()'d by key rather than URL.
  * @param {object} card  - card data object with .evoIcon, .heroIcon
- * @param {number} index - 0-based position in the deck (0–7)
+ * @param {number} index - 0-based position in the deck (0-7)
  * @returns {string} property key
  */
 export function resolveCardImageKey(card, index) {

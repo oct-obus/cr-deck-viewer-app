@@ -1,5 +1,4 @@
-// Centralized design tokens for the CR Deck Viewer app.
-// All colors, spacing, radii, and font values live here.
+// Design tokens for the CR Deck Viewer app.
 
 export const colors = {
   background: '#0a0a1a',
@@ -55,10 +54,8 @@ export const THUMB_HEIGHTS = {
   large: 44,
 };
 
-// Bottom tab bar scroll guard — enough clearance for tab bar + home indicator
 export const TAB_BAR_PADDING = 100;
 
-// Shared style fragments used across multiple screens
 import { StyleSheet } from 'react-native';
 
 export const shared = StyleSheet.create({

@@ -33,7 +33,6 @@ const SAMPLE_DECKS = [
   },
 ];
 
-// Pre-populate saved decks
 AsyncStorage.setItem('cr_saved_decks', JSON.stringify(SAMPLE_DECKS));
 
 function PhoneFrame({ children, width = 393, height = 852, label }) {
@@ -63,7 +62,7 @@ const frameStyles = StyleSheet.create({
 function Preview() {
   return (
     <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center', backgroundColor: '#111', minHeight: '100vh' }}>
-      <PhoneFrame width={393} height={852} label="iPhone 14 Pro — 393×852pt">
+      <PhoneFrame width={393} height={852} label="iPhone 14 Pro - 393×852pt">
         <App />
       </PhoneFrame>
     </View>

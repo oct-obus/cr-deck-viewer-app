@@ -1,5 +1,4 @@
-// Single source of truth for deck naming constants
-// Used by both client (js/deckNaming.js) and server (server.js)
+// Deck naming constants, shared between client and server
 // Win condition flags are stored per-card in cards.json (isWinCondition field),
 // populated from RoyaleAPI data via scrape-royaleapi.js + update-cards.mjs.
 

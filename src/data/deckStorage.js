@@ -1,4 +1,3 @@
-// Deck storage using AsyncStorage — React Native equivalent of localStorage
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const STORAGE_KEY = 'cr_saved_decks';
