@@ -92,7 +92,7 @@ export default function DeckViewerScreen() {
     if (deckCardIds.length !== 8) return;
     const compact = encodeDeck(deckCardIds, towerTroop);
     if (!compact) return;
-    const url = `https://clash.2d.rocks/?d=${compact}`;
+    const url = `https://cb.2d.rocks/david/cr-deck/?d=${compact}`;
     try {
       const shareContent = Platform.OS === 'ios' ? { url } : { message: url };
       await Share.share(shareContent);
