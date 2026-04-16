@@ -8,7 +8,7 @@
     "lint": "eslint .",
     "start": "react-native start",
     "test": "jest",
-    "build:web-preview": "parcel build web/index.html --dist-dir web-dist --public-url /david/cr-deck-preview/ --no-cache"
+    "build:web-preview": "parcel build web/index.html --dist-dir web-dist --public-url ./ --no-cache"
   },
   "dependencies": {
     "@callstack/liquid-glass": "^0.7.1",
@@ -59,13 +59,14 @@
     "react-native-screens": "./web/mocks/screens.js",
     "@react-navigation/native": "./web/mocks/navigation.js",
     "@react-navigation/bottom-tabs": "./web/mocks/navigation.js",
-    "@react-navigation/bottom-tabs/unstable": "./web/mocks/navigation.js"
+    "@react-navigation/bottom-tabs/unstable": "./web/mocks/navigation.js",
+    "./src/data/cardDataProvider": "./src/data/cardDataProvider.web.js",
+    "./src/data/cardDataProvider.js": "./src/data/cardDataProvider.web.js"
   },
   "targets": {
     "web-preview": {
       "context": "browser",
-      "distDir": "web-dist",
-      "publicUrl": "/david/cr-deck-preview/"
+      "distDir": "web-dist"
     }
   }
 }
