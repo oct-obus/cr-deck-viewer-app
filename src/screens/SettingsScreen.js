@@ -2,6 +2,7 @@ import React from 'react';
 import { View, Text, Pressable, StyleSheet, ScrollView } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useSettings } from '../context/SettingsContext';
+import { colors, radii, fontSize as fs, fontWeight as fw, TAB_BAR_PADDING } from '../shared/theme';
 
 function SegmentedControl({ options, selected, onChange }) {
   return (
@@ -55,7 +56,7 @@ export default function SettingsScreen() {
             onChange={(v) => updateSetting('savedDecksView', v)}
           />
 
-          <Text style={[styles.label, { marginTop: 16 }]}>Entry Size</Text>
+          <Text style={[styles.label, styles.labelTopMargin]}>Entry Size</Text>
           <SegmentedControl
             options={[
               { value: 'small', label: 'Small' },
@@ -74,57 +75,60 @@ export default function SettingsScreen() {
 const styles = StyleSheet.create({
   safe: {
     flex: 1,
-    backgroundColor: '#0a0a1a',
+    backgroundColor: colors.background,
   },
   content: {
     padding: 16,
-    paddingBottom: 100,
+    paddingBottom: TAB_BAR_PADDING,
   },
   title: {
-    color: '#e8e8f0',
-    fontSize: 22,
-    fontWeight: '800',
+    color: colors.textPrimary,
+    fontSize: fs.xxl,
+    fontWeight: fw.heavy,
     marginBottom: 24,
   },
   section: {
     marginBottom: 28,
   },
   sectionHeader: {
-    color: '#888',
-    fontSize: 13,
-    fontWeight: '600',
+    color: colors.textMuted,
+    fontSize: fs.sm,
+    fontWeight: fw.semibold,
     textTransform: 'uppercase',
     letterSpacing: 0.8,
     marginBottom: 12,
   },
   label: {
-    color: '#e8e8f0',
-    fontSize: 15,
-    fontWeight: '600',
+    color: colors.textPrimary,
+    fontSize: fs.md,
+    fontWeight: fw.semibold,
     marginBottom: 8,
+  },
+  labelTopMargin: {
+    marginTop: 16,
   },
   segmented: {
     flexDirection: 'row',
-    backgroundColor: 'rgba(255,255,255,0.06)',
-    borderRadius: 10,
+    backgroundColor: colors.overlay06,
+    borderRadius: radii.md,
     padding: 3,
   },
   segment: {
     flex: 1,
     paddingVertical: 10,
-    borderRadius: 8,
+    borderRadius: radii.md,
     alignItems: 'center',
   },
   segmentActive: {
-    backgroundColor: '#f0c040',
+    backgroundColor: colors.accent,
   },
   segmentText: {
-    color: '#888',
-    fontSize: 14,
-    fontWeight: '600',
+    color: colors.textMuted,
+    fontSize: fs.md,
+    fontWeight: fw.semibold,
   },
   segmentTextActive: {
-    color: '#0a0a1a',
-    fontWeight: '800',
+    color: colors.accentText,
+    fontWeight: fw.heavy,
   },
 });

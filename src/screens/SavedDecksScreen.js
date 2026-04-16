@@ -10,6 +10,7 @@ import SavedDeckGridItem from '../components/SavedDeckGridItem';
 import cardData from '../data/cardDataProvider';
 import { useDeckContext } from '../context/DeckContext';
 import { useSettings } from '../context/SettingsContext';
+import { colors, radii, fontSize as fs, fontWeight as fw, TAB_BAR_PADDING } from '../shared/theme';
 
 export default function SavedDecksScreen() {
   const { savedDecks: decks, onDeckLoad, onDeckDelete } = useDeckContext();
@@ -156,7 +157,7 @@ export default function SavedDecksScreen() {
 const styles = StyleSheet.create({
   safe: {
     flex: 1,
-    backgroundColor: '#0a0a1a',
+    backgroundColor: colors.background,
   },
   header: {
     flexDirection: 'row',
@@ -166,37 +167,37 @@ const styles = StyleSheet.create({
     paddingBottom: 8,
   },
   title: {
-    color: '#e8e8f0',
-    fontSize: 22,
-    fontWeight: '800',
+    color: colors.textPrimary,
+    fontSize: fs.xxl,
+    fontWeight: fw.heavy,
   },
   count: {
-    color: '#888',
-    fontSize: 16,
+    color: colors.textMuted,
+    fontSize: fs.lg,
     marginLeft: 8,
-    fontWeight: '600',
+    fontWeight: fw.semibold,
   },
   spacer: { flex: 1 },
   groupBtn: {
     paddingHorizontal: 12,
     paddingVertical: 6,
-    borderRadius: 16,
-    backgroundColor: 'rgba(255,255,255,0.06)',
+    borderRadius: radii.xl,
+    backgroundColor: colors.overlay06,
   },
   groupBtnActive: {
-    backgroundColor: 'rgba(240,192,64,0.2)',
+    backgroundColor: colors.accentBg,
   },
   groupBtnText: {
-    color: '#888',
-    fontSize: 13,
-    fontWeight: '500',
+    color: colors.textMuted,
+    fontSize: fs.sm,
+    fontWeight: fw.normal,
   },
   groupBtnTextActive: {
-    color: '#f0c040',
+    color: colors.accent,
   },
   list: {
     paddingHorizontal: 16,
-    paddingBottom: 100,
+    paddingBottom: TAB_BAR_PADDING,
   },
   gridContainer: {
     flexDirection: 'row',
@@ -210,13 +211,13 @@ const styles = StyleSheet.create({
     marginBottom: 8,
   },
   groupLabel: {
-    color: '#e8e8f0',
-    fontSize: 16,
-    fontWeight: '700',
+    color: colors.textPrimary,
+    fontSize: fs.lg,
+    fontWeight: fw.bold,
   },
   groupCount: {
-    color: '#666',
-    fontSize: 13,
+    color: colors.textSubtle,
+    fontSize: fs.sm,
     marginLeft: 8,
   },
   emptyContainer: {
@@ -226,14 +227,14 @@ const styles = StyleSheet.create({
     padding: 40,
   },
   emptyTitle: {
-    color: '#e8e8f0',
-    fontSize: 20,
-    fontWeight: '700',
+    color: colors.textPrimary,
+    fontSize: fs.xl,
+    fontWeight: fw.bold,
     marginBottom: 8,
   },
   emptySubtitle: {
-    color: '#666',
-    fontSize: 14,
+    color: colors.textSubtle,
+    fontSize: fs.md,
     textAlign: 'center',
   },
 });

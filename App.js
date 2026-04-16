@@ -8,6 +8,7 @@ import SavedDecksScreen from './src/screens/SavedDecksScreen';
 import SettingsScreen from './src/screens/SettingsScreen';
 import { DeckProvider, useDeckContext } from './src/context/DeckContext';
 import { SettingsProvider } from './src/context/SettingsContext';
+import { colors } from './src/shared/theme';
 
 const Tab = createNativeBottomTabNavigator();
 
@@ -15,11 +16,11 @@ const appTheme = {
   ...DarkTheme,
   colors: {
     ...DarkTheme.colors,
-    background: '#0a0a1a',
-    card: '#0d0d1a',
-    border: 'rgba(255,255,255,0.08)',
-    primary: '#f0c040',
-    text: '#e8e8f0',
+    background: colors.background,
+    card: colors.surface,
+    border: colors.border,
+    primary: colors.accent,
+    text: colors.textPrimary,
   },
 };
 
@@ -30,8 +31,8 @@ function AppTabs() {
   return (
     <Tab.Navigator
       screenOptions={{
-        tabBarActiveTintColor: '#f0c040',
-        tabBarInactiveTintColor: '#999',
+        tabBarActiveTintColor: colors.accent,
+        tabBarInactiveTintColor: colors.textSecondary,
       }}
     >
       <Tab.Screen
@@ -78,7 +79,7 @@ export default function App() {
       <SettingsProvider>
         <DeckProvider>
           <NavigationContainer theme={appTheme}>
-            <StatusBar barStyle="light-content" backgroundColor="#0a0a1a" />
+            <StatusBar barStyle="light-content" backgroundColor={colors.background} />
             <AppTabs />
           </NavigationContainer>
         </DeckProvider>

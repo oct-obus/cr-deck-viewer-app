@@ -4,12 +4,7 @@ import { GlassView, liquidGlassSupported } from './GlassView';
 import { RARITY_COLORS } from '../shared/constants';
 import { getCardImage } from '../data/cardDataProvider';
 import cardData from '../data/cardDataProvider';
-
-const THUMB_HEIGHTS = {
-  small:  28,
-  medium: 36,
-  large:  44,
-};
+import { colors, radii, fontSize as fs, fontWeight as fw, THUMB_HEIGHTS, shared } from '../shared/theme';
 
 export default function SavedDeckGridItem({ deck, index, onLoad, onDelete, size = 'medium', numColumns = 2 }) {
   const thumbHeight = THUMB_HEIGHTS[size] || THUMB_HEIGHTS.medium;
@@ -18,12 +13,12 @@ export default function SavedDeckGridItem({ deck, index, onLoad, onDelete, size 
     const card = cardData[id];
     if (!card) return null;
     const imageSource = getCardImage(card, i);
-    const rarityColor = RARITY_COLORS[card.rarity] || '#444';
+    const rarityColor = RARITY_COLORS[card.rarity] || colors.rarityFallback;
 
     return (
       <View key={i} style={styles.thumbCell}>
         <View style={[styles.thumb, { height: thumbHeight, borderColor: rarityColor }]}>
-          <Image source={imageSource} style={styles.thumbImage} resizeMode="cover" />
+          <Image source={imageSource} style={shared.thumbImage} resizeMode="cover" />
         </View>
       </View>
     );
@@ -53,8 +48,8 @@ export default function SavedDeckGridItem({ deck, index, onLoad, onDelete, size 
 
 const styles = StyleSheet.create({
   card: {
-    backgroundColor: 'rgba(16, 26, 50, 0.4)',
-    borderRadius: 12,
+    backgroundColor: colors.glassBg,
+    borderRadius: radii.lg,
     padding: 10,
     marginBottom: 8,
   },
@@ -70,19 +65,15 @@ const styles = StyleSheet.create({
   },
   thumb: {
     aspectRatio: 3 / 4,
-    borderRadius: 4,
+    borderRadius: radii.sm,
     borderWidth: 1.5,
     overflow: 'hidden',
-    backgroundColor: '#1a1a2e',
-  },
-  thumbImage: {
-    width: '100%',
-    height: '100%',
+    backgroundColor: colors.cardImageBg,
   },
   name: {
-    color: '#e8e8f0',
-    fontSize: 13,
-    fontWeight: '600',
+    color: colors.textPrimary,
+    fontSize: fs.sm,
+    fontWeight: fw.semibold,
     textAlign: 'center',
     marginBottom: 4,
   },
@@ -92,12 +83,12 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   date: {
-    color: '#777',
-    fontSize: 10,
+    color: colors.textMuted,
+    fontSize: fs.xs,
   },
   deleteText: {
-    color: '#ff6b6b',
-    fontSize: 13,
-    fontWeight: '700',
+    color: colors.error,
+    fontSize: fs.sm,
+    fontWeight: fw.bold,
   },
 });

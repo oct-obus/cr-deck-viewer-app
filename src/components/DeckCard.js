@@ -2,6 +2,7 @@ import React from 'react';
 import { View, Image, Text, StyleSheet } from 'react-native';
 import { RARITY_COLORS } from '../shared/constants';
 import { getCardImage } from '../data/cardDataProvider';
+import { colors, radii, fontSize as fs, fontWeight as fw, shared } from '../shared/theme';
 
 export default function DeckCard({ card, index, size = 'normal', compact = false }) {
   if (!card) {
@@ -16,7 +17,7 @@ export default function DeckCard({ card, index, size = 'normal', compact = false
   }
 
   const imageSource = getCardImage(card, index);
-  const rarityColor = RARITY_COLORS[card.rarity] || '#666';
+  const rarityColor = RARITY_COLORS[card.rarity] || colors.textSubtle;
 
   return (
     <View style={[styles.container, sizeStyles[size]]}>
@@ -51,41 +52,41 @@ const styles = StyleSheet.create({
   unknownSlot: {
     width: '100%',
     aspectRatio: 3 / 4,
-    backgroundColor: '#333',
-    borderRadius: 6,
+    backgroundColor: colors.cardUnknownBg,
+    borderRadius: radii.sm,
     justifyContent: 'center',
     alignItems: 'center',
   },
   unknownText: {
-    fontSize: 20,
-    color: '#666',
+    fontSize: fs.xl,
+    color: colors.textSubtle,
   },
   unknownName: {
-    fontSize: 10,
-    color: '#666',
+    fontSize: fs.xs,
+    color: colors.textSubtle,
     marginTop: 2,
   },
   imageWrapper: {
     width: '100%',
     aspectRatio: 3 / 4,
-    borderRadius: 8,
+    borderRadius: radii.md,
     borderWidth: 2,
     overflow: 'hidden',
-    backgroundColor: '#1a1a2e',
+    backgroundColor: colors.cardImageBg,
   },
   cardImage: {
     width: '100%',
     height: '100%',
   },
   name: {
-    fontSize: 10,
-    fontWeight: '600',
+    fontSize: fs.xs,
+    fontWeight: fw.semibold,
     marginTop: 2,
     textAlign: 'center',
   },
   elixirText: {
-    fontSize: 10,
-    color: '#999',
+    fontSize: fs.xs,
+    color: colors.textSecondary,
     marginTop: 1,
   },
 });

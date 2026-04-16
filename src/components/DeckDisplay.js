@@ -5,6 +5,7 @@ import DeckCard from './DeckCard';
 import { computeDeckStats } from '../shared/deckStats';
 import cardData from '../data/cardDataProvider';
 import { useSettings } from '../context/SettingsContext';
+import { colors, radii, fontSize as fs, fontWeight as fw } from '../shared/theme';
 
 export default function DeckDisplay({ cardIds }) {
   const { settings } = useSettings();
@@ -54,8 +55,8 @@ export default function DeckDisplay({ cardIds }) {
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: 'rgba(16, 26, 50, 0.5)',
-    borderRadius: 16,
+    backgroundColor: colors.glassBg,
+    borderRadius: radii.xl,
     padding: 12,
     marginBottom: 12,
   },
@@ -81,16 +82,16 @@ const styles = StyleSheet.create({
     marginTop: 12,
     paddingTop: 10,
     borderTopWidth: 1,
-    borderTopColor: 'rgba(255,255,255,0.1)',
+    borderTopColor: colors.overlay10,
   },
   statRow: {
-    color: '#999',
-    fontSize: 13,
+    color: colors.textSecondary,
+    fontSize: fs.sm,
     marginBottom: 4,
     textAlign: 'center',
   },
   statValue: {
-    color: '#e8e8f0',
-    fontWeight: '700',
+    color: colors.textPrimary,
+    fontWeight: fw.bold,
   },
 });

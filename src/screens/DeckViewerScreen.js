@@ -13,6 +13,7 @@ import { encodeDeck } from '../shared/deckUrl';
 import { parseDeckString } from '../shared/deckParser';
 import { saveDeck } from '../data/deckStorage';
 import { useDeckContext } from '../context/DeckContext';
+import { colors, radii, fontSize as fs, fontWeight as fw, TAB_BAR_PADDING } from '../shared/theme';
 
 export default function DeckViewerScreen() {
   const { onDeckSaved, savedDecks, loadedDeck } = useDeckContext();
@@ -171,7 +172,7 @@ export default function DeckViewerScreen() {
                   <TextInput
                     style={styles.textInput}
                     placeholder="Paste a deck share link..."
-                    placeholderTextColor="#555"
+                    placeholderTextColor={colors.textSubtle}
                     value={inputText}
                     onChangeText={setInputText}
                     multiline
@@ -219,7 +220,7 @@ export default function DeckViewerScreen() {
 const styles = StyleSheet.create({
   safe: {
     flex: 1,
-    backgroundColor: '#0a0a1a',
+    backgroundColor: colors.background,
   },
   flex: {
     flex: 1,
@@ -229,73 +230,73 @@ const styles = StyleSheet.create({
   },
   scrollContent: {
     padding: 16,
-    paddingBottom: 100,
+    paddingBottom: TAB_BAR_PADDING,
   },
   title: {
-    color: '#e8e8f0',
-    fontSize: 22,
-    fontWeight: '800',
+    color: colors.textPrimary,
+    fontSize: fs.xxl,
+    fontWeight: fw.heavy,
     marginBottom: 16,
   },
   inputArea: {
     marginBottom: 16,
   },
   pasteBtn: {
-    backgroundColor: '#f0c040',
+    backgroundColor: colors.accent,
     paddingVertical: 16,
-    borderRadius: 14,
+    borderRadius: radii.lg,
     alignItems: 'center',
     marginBottom: 12,
   },
   pasteBtnText: {
-    color: '#0a0a1a',
-    fontSize: 17,
-    fontWeight: '800',
+    color: colors.accentText,
+    fontSize: fs.lg,
+    fontWeight: fw.heavy,
   },
   manualLink: {
-    color: '#888',
-    fontSize: 14,
+    color: colors.textMuted,
+    fontSize: fs.md,
     textAlign: 'center',
   },
   textInput: {
-    backgroundColor: 'rgba(255,255,255,0.06)',
-    borderRadius: 12,
+    backgroundColor: colors.overlay06,
+    borderRadius: radii.lg,
     padding: 14,
-    color: '#e8e8f0',
-    fontSize: 14,
+    color: colors.textPrimary,
+    fontSize: fs.md,
     minHeight: 80,
     textAlignVertical: 'top',
     marginTop: 10,
     marginBottom: 10,
   },
   showBtn: {
-    backgroundColor: 'rgba(255,255,255,0.1)',
+    backgroundColor: colors.overlay10,
     paddingVertical: 12,
-    borderRadius: 10,
+    borderRadius: radii.md,
     alignItems: 'center',
   },
   showBtnText: {
-    color: '#e8e8f0',
-    fontSize: 15,
-    fontWeight: '600',
+    color: colors.textPrimary,
+    fontSize: fs.md,
+    fontWeight: fw.semibold,
   },
   errorText: {
-    color: '#ff6b6b',
-    fontSize: 13,
+    color: colors.error,
+    fontSize: fs.sm,
     marginTop: 8,
   },
   newDeckBtn: {
-    backgroundColor: 'rgba(255,255,255,0.08)',
+    backgroundColor: colors.overlay08,
     paddingHorizontal: 16,
     paddingVertical: 10,
-    borderRadius: 10,
+    borderRadius: radii.md,
     alignSelf: 'flex-start',
     marginBottom: 12,
   },
   newDeckBtnText: {
-    color: '#e8e8f0',
-    fontSize: 14,
-    fontWeight: '600',
+    color: colors.textPrimary,
+    fontSize: fs.md,
+    fontWeight: fw.semibold,
   },
   deckActions: {
     flexDirection: 'row',
@@ -305,25 +306,25 @@ const styles = StyleSheet.create({
     marginTop: 4,
   },
   actionBtn: {
-    backgroundColor: 'rgba(255,255,255,0.08)',
+    backgroundColor: colors.overlay08,
     paddingHorizontal: 16,
     paddingVertical: 10,
-    borderRadius: 10,
+    borderRadius: radii.md,
   },
   actionBtnText: {
-    color: '#e8e8f0',
-    fontSize: 14,
-    fontWeight: '600',
+    color: colors.textPrimary,
+    fontSize: fs.md,
+    fontWeight: fw.semibold,
   },
   saveBtn: {
-    backgroundColor: '#f0c040',
+    backgroundColor: colors.accent,
     paddingHorizontal: 16,
     paddingVertical: 10,
-    borderRadius: 10,
+    borderRadius: radii.md,
   },
   saveBtnText: {
-    color: '#0a0a1a',
-    fontSize: 14,
-    fontWeight: '800',
+    color: colors.accentText,
+    fontSize: fs.md,
+    fontWeight: fw.heavy,
   },
 });

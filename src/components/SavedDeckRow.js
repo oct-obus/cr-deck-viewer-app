@@ -4,12 +4,7 @@ import { GlassView, liquidGlassSupported } from './GlassView';
 import { RARITY_COLORS } from '../shared/constants';
 import { getCardImage } from '../data/cardDataProvider';
 import cardData from '../data/cardDataProvider';
-
-const THUMB_HEIGHTS = {
-  small:  30,
-  medium: 40,
-  large:  48,
-};
+import { colors, radii, fontSize as fs, fontWeight as fw, THUMB_HEIGHTS, shared } from '../shared/theme';
 
 export default function SavedDeckRow({ deck, index, onLoad, onDelete, size = 'medium' }) {
   const thumbHeight = THUMB_HEIGHTS[size] || THUMB_HEIGHTS.medium;
@@ -19,7 +14,7 @@ export default function SavedDeckRow({ deck, index, onLoad, onDelete, size = 'me
     const card = cardData[id];
     if (!card) return null;
     const imageSource = getCardImage(card, i);
-    const rarityColor = RARITY_COLORS[card.rarity] || '#444';
+    const rarityColor = RARITY_COLORS[card.rarity] || colors.rarityFallback;
 
     const thumbStyle = stacked
       ? [styles.thumb, styles.stackedThumb, { borderColor: rarityColor }]
@@ -28,7 +23,7 @@ export default function SavedDeckRow({ deck, index, onLoad, onDelete, size = 'me
     return (
       <View key={i} style={stacked ? styles.stackedThumbCell : styles.thumbCell}>
         <View style={thumbStyle}>
-          <Image source={imageSource} style={styles.thumbImage} resizeMode="cover" />
+          <Image source={imageSource} style={shared.thumbImage} resizeMode="cover" />
         </View>
       </View>
     );
@@ -90,8 +85,8 @@ const styles = StyleSheet.create({
   row: {
     flexDirection: 'row',
     alignItems: 'center',
-    backgroundColor: 'rgba(16, 26, 50, 0.4)',
-    borderRadius: 12,
+    backgroundColor: colors.glassBg,
+    borderRadius: radii.lg,
     padding: 10,
     marginBottom: 8,
   },
@@ -109,8 +104,8 @@ const styles = StyleSheet.create({
 
   // Medium/Large: stacked (cards on top, name/date/delete below)
   stackedRow: {
-    backgroundColor: 'rgba(16, 26, 50, 0.4)',
-    borderRadius: 12,
+    backgroundColor: colors.glassBg,
+    borderRadius: radii.lg,
     padding: 10,
     marginBottom: 8,
   },
@@ -136,43 +131,39 @@ const styles = StyleSheet.create({
   // Shared styles
   thumb: {
     aspectRatio: 3 / 4,
-    borderRadius: 4,
+    borderRadius: radii.sm,
     borderWidth: 1.5,
     overflow: 'hidden',
-    backgroundColor: '#1a1a2e',
+    backgroundColor: colors.cardImageBg,
   },
   stackedThumb: {
     width: '100%',
   },
-  thumbImage: {
-    width: '100%',
-    height: '100%',
-  },
   name: {
-    color: '#e8e8f0',
-    fontSize: 14,
-    fontWeight: '600',
+    color: colors.textPrimary,
+    fontSize: fs.md,
+    fontWeight: fw.semibold,
   },
   nameSmall: {
-    fontSize: 12,
+    fontSize: fs.sm,
   },
   date: {
-    color: '#777',
-    fontSize: 11,
+    color: colors.textMuted,
+    fontSize: fs.xs,
     marginTop: 2,
   },
   deleteBtn: {
     width: 32,
     height: 32,
-    borderRadius: 16,
-    backgroundColor: 'rgba(255, 107, 107, 0.15)',
+    borderRadius: radii.xl,
+    backgroundColor: colors.errorBg,
     justifyContent: 'center',
     alignItems: 'center',
     marginLeft: 8,
   },
   deleteText: {
-    color: '#ff6b6b',
-    fontSize: 14,
-    fontWeight: '700',
+    color: colors.error,
+    fontSize: fs.md,
+    fontWeight: fw.bold,
   },
 });
