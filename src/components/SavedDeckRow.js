@@ -12,16 +12,29 @@ export default function SavedDeckRow({ deck, index, onLoad, onDelete, size = 'me
 
   const cards = deck.cardIds.map((id, i) => {
     const card = cardData[id];
-    if (!card) return null;
+    const cellStyle = stacked ? styles.stackedThumbCell : styles.thumbCell;
+
+    if (!card) {
+      const unknownStyle = stacked
+        ? [styles.thumb, styles.stackedThumb, styles.unknownThumb]
+        : [styles.thumb, { height: thumbHeight }, styles.unknownThumb];
+      return (
+        <View key={i} style={cellStyle}>
+          <View style={unknownStyle}>
+            <Text style={styles.unknownText}>?</Text>
+          </View>
+        </View>
+      );
+    }
+
     const imageSource = getCardImage(card, i);
     const rarityColor = RARITY_COLORS[card.rarity] || colors.rarityFallback;
-
     const thumbStyle = stacked
       ? [styles.thumb, styles.stackedThumb, { borderColor: rarityColor }]
       : [styles.thumb, { height: thumbHeight, borderColor: rarityColor }];
 
     return (
-      <View key={i} style={stacked ? styles.stackedThumbCell : styles.thumbCell}>
+      <View key={i} style={cellStyle}>
         <View style={thumbStyle}>
           <Image source={imageSource} style={shared.thumbImage} resizeMode="cover" />
         </View>
@@ -135,6 +148,15 @@ const styles = StyleSheet.create({
     borderWidth: 1.5,
     overflow: 'hidden',
     backgroundColor: colors.cardImageBg,
+  },
+  unknownThumb: {
+    borderColor: colors.textSubtle,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  unknownText: {
+    fontSize: fs.lg,
+    color: colors.textSubtle,
   },
   stackedThumb: {
     width: '100%',

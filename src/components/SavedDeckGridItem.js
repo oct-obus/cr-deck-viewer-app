@@ -11,7 +11,17 @@ export default function SavedDeckGridItem({ deck, index, onLoad, onDelete, size 
 
   const cards = deck.cardIds.map((id, i) => {
     const card = cardData[id];
-    if (!card) return null;
+
+    if (!card) {
+      return (
+        <View key={i} style={styles.thumbCell}>
+          <View style={[styles.thumb, { height: thumbHeight }, styles.unknownThumb]}>
+            <Text style={styles.unknownText}>?</Text>
+          </View>
+        </View>
+      );
+    }
+
     const imageSource = getCardImage(card, i);
     const rarityColor = RARITY_COLORS[card.rarity] || colors.rarityFallback;
 
@@ -69,6 +79,15 @@ const styles = StyleSheet.create({
     borderWidth: 1.5,
     overflow: 'hidden',
     backgroundColor: colors.cardImageBg,
+  },
+  unknownThumb: {
+    borderColor: colors.textSubtle,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  unknownText: {
+    fontSize: fs.lg,
+    color: colors.textSubtle,
   },
   name: {
     color: colors.textPrimary,

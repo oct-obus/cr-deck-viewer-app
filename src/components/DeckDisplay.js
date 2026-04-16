@@ -13,6 +13,8 @@ export default function DeckDisplay({ cardIds }) {
 
   const stats = useMemo(() => computeDeckStats(cardIds, cardData), [cardIds]);
   const is1x8 = settings.deckLayout === '1x8';
+  const unknownCount = stats?.unknownCount || 0;
+  const approx = unknownCount > 0;
 
   return (
     <GlassView
@@ -36,17 +38,27 @@ export default function DeckDisplay({ cardIds }) {
           ))}
         </View>
       )}
-      {stats && (
+      {approx && (
+        <View style={styles.warningBanner}>
+          <Text style={styles.warningText}>
+            {unknownCount} unrecognized card{unknownCount > 1 ? 's' : ''} — app data may be outdated
+          </Text>
+        </View>
+      )}
+      {stats?.avgElixir && (
         <View style={styles.statsContainer}>
           <Text style={styles.statRow}>
-            Average Elixir: <Text style={styles.statValue}>{stats.avgElixir}</Text>
+            Average Elixir{approx ? ' ~' : ': '}
+            <Text style={styles.statValue}>{stats.avgElixir}</Text>
           </Text>
-          <Text style={styles.statRow}>
-            4-Card Cycle:{' '}
-            <Text style={styles.statValue}>{stats.cycleMin}</Text> min{' · '}
-            <Text style={styles.statValue}>{stats.cycleAvg}</Text> avg{' · '}
-            <Text style={styles.statValue}>{stats.cycleMax}</Text> max
-          </Text>
+          {stats.cycleMin != null && (
+            <Text style={styles.statRow}>
+              4-Card Cycle:{' '}
+              <Text style={styles.statValue}>{stats.cycleMin}</Text> min{' · '}
+              <Text style={styles.statValue}>{stats.cycleAvg}</Text> avg{' · '}
+              <Text style={styles.statValue}>{stats.cycleMax}</Text> max
+            </Text>
+          )}
         </View>
       )}
     </GlassView>
@@ -83,6 +95,18 @@ const styles = StyleSheet.create({
     paddingTop: 10,
     borderTopWidth: 1,
     borderTopColor: colors.overlay10,
+  },
+  warningBanner: {
+    marginTop: 10,
+    paddingVertical: 6,
+    paddingHorizontal: 10,
+    backgroundColor: colors.warningBg,
+    borderRadius: radii.sm,
+  },
+  warningText: {
+    color: colors.warning,
+    fontSize: fs.sm,
+    textAlign: 'center',
   },
   statRow: {
     color: colors.textSecondary,

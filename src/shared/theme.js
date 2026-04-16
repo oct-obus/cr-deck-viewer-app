@@ -21,6 +21,8 @@ export const colors = {
   overlay10: 'rgba(255,255,255,0.1)',
   accentBg: 'rgba(240,192,64,0.2)',
   errorBg: 'rgba(255,107,107,0.15)',
+  warning: '#f0a030',
+  warningBg: 'rgba(240,160,48,0.15)',
   border: 'rgba(255,255,255,0.08)',
 };
 
