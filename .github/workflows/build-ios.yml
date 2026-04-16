@@ -2,6 +2,9 @@ name: Build iOS IPA
 
 on:
   workflow_dispatch:
+  push:
+    branches: [main, ios26-liquid-glass]
+    paths-ignore: ['**.md']
 
 jobs:
   build-ios:
