@@ -13,8 +13,7 @@ export function generateDeckName(cardIds, cardData) {
   }));
 
   const totalElixir = cards.reduce((s, c) => s + c.elixir, 0);
-  const avgElixirNum = totalElixir / 8;
-  const avgElixir = avgElixirNum.toFixed(1);
+  const avgElixir = (totalElixir / 8).toFixed(1);
 
   function displayName(card) {
     let base = CARD_ABBREVS[card.id] || card.name;
@@ -32,9 +31,9 @@ export function generateDeckName(cardIds, cardData) {
   const baitCount = cards.filter(c => BAIT_CARDS.has(c.id)).length;
   let archetype = '';
   if (baitCount >= 3) archetype = 'Bait';
-  else if (cycleCount >= 3 && avgElixirNum <= 3.3) archetype = 'Cycle';
-  else if (avgElixirNum >= 4.2) archetype = 'Beatdown';
-  else if (avgElixirNum <= 2.9) archetype = 'Cycle';
+  else if (cycleCount >= 3 && parseFloat(avgElixir) <= 3.3) archetype = 'Cycle';
+  else if (parseFloat(avgElixir) >= 4.2) archetype = 'Beatdown';
+  else if (parseFloat(avgElixir) <= 2.9) archetype = 'Cycle';
 
   const parts = [];
 
