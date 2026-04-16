@@ -1,9 +1,10 @@
 import React, { useState, useCallback, useEffect } from 'react';
 import {
-  View, Text, ScrollView, Pressable, Modal, Alert,
+  View, Text, ScrollView, Pressable, Alert, ActionSheetIOS,
   StyleSheet, TextInput, Linking, Share,
   KeyboardAvoidingView, Platform,
 } from 'react-native';
+import Clipboard from '@react-native-clipboard/clipboard';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import DeckDisplay from '../components/DeckDisplay';
 import cardData from '../data/cardDataProvider';
@@ -20,36 +21,55 @@ export default function DeckViewerScreen() {
   const [towerTroop, setTowerTroop] = useState(null);
   const [error, setError] = useState('');
   const [showInput, setShowInput] = useState(true);
-  const [showSaveModal, setShowSaveModal] = useState(false);
-  const [saveName, setSaveName] = useState('');
+  const [showManualInput, setShowManualInput] = useState(false);
 
-  // Load deck from saved decks tab
   useEffect(() => {
     if (loadedDeck) {
       setDeckCardIds(loadedDeck.cardIds || []);
       setTowerTroop(loadedDeck.tt || null);
       setShowInput(false);
+      setShowManualInput(false);
       setError('');
       setInputText('');
     }
   }, [loadedDeck]);
 
-  const handleShowDeck = useCallback(() => {
+  const parseDeck = useCallback((text) => {
     setError('');
-    const result = parseDeckString(inputText);
+    const result = parseDeckString(text);
     if (result.error) {
       setError(result.error);
-      return;
+      return false;
     }
     setDeckCardIds(result.cardIds);
     setTowerTroop(result.towerTroop || null);
     setShowInput(false);
-  }, [inputText]);
+    setShowManualInput(false);
+    return true;
+  }, []);
+
+  const handlePasteFromClipboard = useCallback(async () => {
+    try {
+      const text = await Clipboard.getString();
+      if (!text || !text.trim()) {
+        setError('Clipboard is empty. Copy a deck link first.');
+        return;
+      }
+      parseDeck(text.trim());
+    } catch {
+      setError('Could not read clipboard.');
+    }
+  }, [parseDeck]);
+
+  const handleShowDeck = useCallback(() => {
+    parseDeck(inputText);
+  }, [inputText, parseDeck]);
 
   const handleNewDeck = useCallback(() => {
     setDeckCardIds([]);
     setTowerTroop(null);
     setShowInput(true);
+    setShowManualInput(false);
     setInputText('');
     setError('');
   }, []);
@@ -57,24 +77,56 @@ export default function DeckViewerScreen() {
   const handleSave = useCallback(() => {
     if (deckCardIds.length !== 8) return;
     const suggested = generateDeckName(deckCardIds, cardData);
-    setSaveName(suggested);
-    setShowSaveModal(true);
-  }, [deckCardIds]);
 
-  const confirmSave = useCallback(async () => {
-    try {
-      const newDecks = await saveDeck({
-        name: saveName || 'Unnamed Deck',
-        cardIds: deckCardIds,
-        tt: towerTroop,
-        slots: [],
-      }, savedDecks);
-      onDeckSaved(newDecks);
-      setShowSaveModal(false);
-    } catch (e) {
-      Alert.alert('Save Failed', e.message);
+    if (Platform.OS === 'ios') {
+      Alert.prompt(
+        'Save Deck',
+        'Enter a name for this deck:',
+        [
+          { text: 'Cancel', style: 'cancel' },
+          {
+            text: 'Save',
+            onPress: async (name) => {
+              try {
+                const newDecks = await saveDeck({
+                  name: name || suggested || 'Unnamed Deck',
+                  cardIds: deckCardIds,
+                  tt: towerTroop,
+                  slots: [],
+                }, savedDecks);
+                onDeckSaved(newDecks);
+              } catch (e) {
+                Alert.alert('Save Failed', e.message);
+              }
+            },
+          },
+        ],
+        'plain-text',
+        suggested,
+      );
+    } else {
+      // Android fallback — Alert.prompt not available
+      Alert.alert('Save Deck', `Save as "${suggested}"?`, [
+        { text: 'Cancel', style: 'cancel' },
+        {
+          text: 'Save',
+          onPress: async () => {
+            try {
+              const newDecks = await saveDeck({
+                name: suggested || 'Unnamed Deck',
+                cardIds: deckCardIds,
+                tt: towerTroop,
+                slots: [],
+              }, savedDecks);
+              onDeckSaved(newDecks);
+            } catch (e) {
+              Alert.alert('Save Failed', e.message);
+            }
+          },
+        },
+      ]);
     }
-  }, [saveName, deckCardIds, towerTroop, savedDecks, onDeckSaved]);
+  }, [deckCardIds, towerTroop, savedDecks, onDeckSaved]);
 
   const handleCopyToGame = useCallback(() => {
     if (deckCardIds.length !== 8) return;
@@ -97,6 +149,22 @@ export default function DeckViewerScreen() {
     } catch {}
   }, [deckCardIds, towerTroop]);
 
+  const handleActions = useCallback(() => {
+    if (Platform.OS === 'ios') {
+      ActionSheetIOS.showActionSheetWithOptions(
+        {
+          options: ['Copy to Clash Royale', 'Share Link', 'Save Deck', 'Cancel'],
+          cancelButtonIndex: 3,
+        },
+        (index) => {
+          if (index === 0) handleCopyToGame();
+          else if (index === 1) handleShare();
+          else if (index === 2) handleSave();
+        },
+      );
+    }
+  }, [handleCopyToGame, handleShare, handleSave]);
+
   return (
     <SafeAreaView style={styles.safe} edges={['top']}>
       <KeyboardAvoidingView
@@ -108,79 +176,66 @@ export default function DeckViewerScreen() {
 
           {showInput ? (
             <View style={styles.inputArea}>
-              <TextInput
-                style={styles.textInput}
-                placeholder={'Paste a Clash Royale deck share link here...\n\nExample: https://link.clashroyale.com/en?clashroyale://copyDeck?deck=27000013;28000017;...'}
-                placeholderTextColor="#555"
-                value={inputText}
-                onChangeText={setInputText}
-                multiline
-                autoCorrect={false}
-                autoCapitalize="none"
-                textAlignVertical="top"
-              />
-              <View style={styles.inputButtons}>
-                <Pressable style={styles.primaryBtn} onPress={handleShowDeck}>
-                  <Text style={styles.primaryBtnText}>Show Deck</Text>
+              <Pressable style={styles.pasteBtn} onPress={handlePasteFromClipboard}>
+                <Text style={styles.pasteBtnText}>Paste from Clipboard</Text>
+              </Pressable>
+
+              {!showManualInput ? (
+                <Pressable onPress={() => setShowManualInput(true)}>
+                  <Text style={styles.manualLink}>Or enter link manually...</Text>
                 </Pressable>
-              </View>
+              ) : (
+                <>
+                  <TextInput
+                    style={styles.textInput}
+                    placeholder="Paste a deck share link..."
+                    placeholderTextColor="#555"
+                    value={inputText}
+                    onChangeText={setInputText}
+                    multiline
+                    autoCorrect={false}
+                    autoCapitalize="none"
+                    textAlignVertical="top"
+                    returnKeyType="go"
+                    onSubmitEditing={handleShowDeck}
+                  />
+                  <Pressable style={styles.showBtn} onPress={handleShowDeck}>
+                    <Text style={styles.showBtnText}>Show Deck</Text>
+                  </Pressable>
+                </>
+              )}
               {error ? <Text style={styles.errorText}>{error}</Text> : null}
             </View>
           ) : (
-            <View style={styles.collapsedInput}>
-              <Pressable style={styles.newDeckBtn} onPress={handleNewDeck}>
-                <Text style={styles.newDeckBtnText}>New Deck</Text>
-              </Pressable>
-            </View>
+            <Pressable style={styles.newDeckBtn} onPress={handleNewDeck}>
+              <Text style={styles.newDeckBtnText}>New Deck</Text>
+            </Pressable>
           )}
 
           {deckCardIds.length > 0 && (
             <>
               <DeckDisplay cardIds={deckCardIds} />
-              <View style={styles.deckActions}>
-                <Pressable style={styles.actionBtn} onPress={handleCopyToGame}>
-                  <Text style={styles.actionBtnText}>Copy to CR</Text>
+              {Platform.OS === 'ios' ? (
+                <Pressable style={styles.actionsBtn} onPress={handleActions}>
+                  <Text style={styles.actionsBtnText}>Actions...</Text>
                 </Pressable>
-                <Pressable style={styles.actionBtn} onPress={handleShare}>
-                  <Text style={styles.actionBtnText}>Share Link</Text>
-                </Pressable>
-                <Pressable style={styles.saveBtn} onPress={handleSave}>
-                  <Text style={styles.saveBtnText}>Save Deck</Text>
-                </Pressable>
-              </View>
+              ) : (
+                <View style={styles.deckActions}>
+                  <Pressable style={styles.actionBtn} onPress={handleCopyToGame}>
+                    <Text style={styles.actionBtnText}>Copy to CR</Text>
+                  </Pressable>
+                  <Pressable style={styles.actionBtn} onPress={handleShare}>
+                    <Text style={styles.actionBtnText}>Share Link</Text>
+                  </Pressable>
+                  <Pressable style={styles.saveBtn} onPress={handleSave}>
+                    <Text style={styles.saveBtnText}>Save Deck</Text>
+                  </Pressable>
+                </View>
+              )}
             </>
           )}
         </ScrollView>
       </KeyboardAvoidingView>
-
-      {/* Save Name Modal */}
-      <Modal visible={showSaveModal} animationType="fade" transparent>
-        <View style={styles.modalOverlay}>
-          <View style={styles.modalContent}>
-            <Text style={styles.modalTitle}>Save Deck</Text>
-            <TextInput
-              style={styles.modalInput}
-              placeholder="Deck name"
-              placeholderTextColor="#555"
-              value={saveName}
-              onChangeText={setSaveName}
-              autoCorrect={false}
-              selectTextOnFocus
-            />
-            <View style={styles.modalActions}>
-              <Pressable
-                style={styles.modalCancelBtn}
-                onPress={() => setShowSaveModal(false)}
-              >
-                <Text style={styles.modalCancelText}>Cancel</Text>
-              </Pressable>
-              <Pressable style={styles.modalSaveBtn} onPress={confirmSave}>
-                <Text style={styles.modalSaveBtnText}>Save</Text>
-              </Pressable>
-            </View>
-          </View>
-        </View>
-      </Modal>
     </SafeAreaView>
   );
 }
@@ -205,9 +260,25 @@ const styles = StyleSheet.create({
     fontWeight: '800',
     marginBottom: 16,
   },
-  // Input area
   inputArea: {
     marginBottom: 16,
+  },
+  pasteBtn: {
+    backgroundColor: '#f0c040',
+    paddingVertical: 16,
+    borderRadius: 14,
+    alignItems: 'center',
+    marginBottom: 12,
+  },
+  pasteBtnText: {
+    color: '#0a0a1a',
+    fontSize: 17,
+    fontWeight: '800',
+  },
+  manualLink: {
+    color: '#888',
+    fontSize: 14,
+    textAlign: 'center',
   },
   textInput: {
     backgroundColor: 'rgba(255,255,255,0.06)',
@@ -215,35 +286,26 @@ const styles = StyleSheet.create({
     padding: 14,
     color: '#e8e8f0',
     fontSize: 14,
-    minHeight: 100,
+    minHeight: 80,
     textAlignVertical: 'top',
+    marginTop: 10,
     marginBottom: 10,
   },
-  inputButtons: {
-    flexDirection: 'row',
-    gap: 10,
-  },
-  primaryBtn: {
-    backgroundColor: '#f0c040',
-    paddingHorizontal: 20,
+  showBtn: {
+    backgroundColor: 'rgba(255,255,255,0.1)',
     paddingVertical: 12,
     borderRadius: 10,
-    flex: 1,
     alignItems: 'center',
   },
-  primaryBtnText: {
-    color: '#0a0a1a',
+  showBtnText: {
+    color: '#e8e8f0',
     fontSize: 15,
-    fontWeight: '800',
+    fontWeight: '600',
   },
   errorText: {
     color: '#ff6b6b',
     fontSize: 13,
     marginTop: 8,
-  },
-  // Collapsed input
-  collapsedInput: {
-    marginBottom: 12,
   },
   newDeckBtn: {
     backgroundColor: 'rgba(255,255,255,0.08)',
@@ -251,13 +313,25 @@ const styles = StyleSheet.create({
     paddingVertical: 10,
     borderRadius: 10,
     alignSelf: 'flex-start',
+    marginBottom: 12,
   },
   newDeckBtnText: {
     color: '#e8e8f0',
     fontSize: 14,
     fontWeight: '600',
   },
-  // Deck actions
+  actionsBtn: {
+    backgroundColor: 'rgba(255,255,255,0.1)',
+    paddingVertical: 14,
+    borderRadius: 12,
+    alignItems: 'center',
+    marginTop: 4,
+  },
+  actionsBtnText: {
+    color: '#f0c040',
+    fontSize: 16,
+    fontWeight: '700',
+  },
   deckActions: {
     flexDirection: 'row',
     justifyContent: 'center',
@@ -286,56 +360,5 @@ const styles = StyleSheet.create({
     color: '#0a0a1a',
     fontSize: 14,
     fontWeight: '800',
-  },
-  // Save modal
-  modalOverlay: {
-    flex: 1,
-    backgroundColor: 'rgba(0,0,0,0.7)',
-    justifyContent: 'center',
-    padding: 24,
-  },
-  modalContent: {
-    backgroundColor: '#1a1a2e',
-    borderRadius: 16,
-    padding: 24,
-  },
-  modalTitle: {
-    color: '#e8e8f0',
-    fontSize: 18,
-    fontWeight: '700',
-    marginBottom: 14,
-  },
-  modalInput: {
-    backgroundColor: 'rgba(255,255,255,0.06)',
-    borderRadius: 10,
-    padding: 12,
-    color: '#e8e8f0',
-    fontSize: 15,
-    marginBottom: 16,
-  },
-  modalActions: {
-    flexDirection: 'row',
-    justifyContent: 'flex-end',
-    gap: 10,
-  },
-  modalCancelBtn: {
-    paddingHorizontal: 18,
-    paddingVertical: 10,
-    borderRadius: 8,
-  },
-  modalCancelText: {
-    color: '#888',
-    fontSize: 15,
-  },
-  modalSaveBtn: {
-    backgroundColor: '#f0c040',
-    paddingHorizontal: 18,
-    paddingVertical: 10,
-    borderRadius: 8,
-  },
-  modalSaveBtnText: {
-    color: '#0a0a1a',
-    fontSize: 15,
-    fontWeight: '700',
   },
 });
