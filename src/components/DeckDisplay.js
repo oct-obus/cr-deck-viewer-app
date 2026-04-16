@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, ScrollView, StyleSheet } from 'react-native';
+import { View, Text, StyleSheet } from 'react-native';
 import { GlassView, liquidGlassSupported } from './GlassView';
 import DeckCard from './DeckCard';
 import { computeDeckStats } from '../shared/deckStats';
@@ -19,11 +19,13 @@ export default function DeckDisplay({ cardIds }) {
       {...(liquidGlassSupported ? { effect: 'regular', colorScheme: 'dark' } : {})}
     >
       {is1x8 ? (
-        <ScrollView horizontal showsHorizontalScrollIndicator={false} contentContainerStyle={styles.row}>
+        <View style={styles.row}>
           {cardIds.map((id, i) => (
-            <DeckCard key={i} card={cardData[id]} index={i} size="small" />
+            <View key={i} style={styles.rowCell}>
+              <DeckCard card={cardData[id]} index={i} size="grid" />
+            </View>
           ))}
-        </ScrollView>
+        </View>
       ) : (
         <View style={styles.grid}>
           {cardIds.map((id, i) => (
@@ -69,8 +71,11 @@ const styles = StyleSheet.create({
   },
   row: {
     flexDirection: 'row',
-    alignItems: 'flex-start',
-    paddingHorizontal: 4,
+  },
+  rowCell: {
+    width: '12.5%',
+    alignItems: 'center',
+    paddingHorizontal: 1,
   },
   statsContainer: {
     marginTop: 12,
