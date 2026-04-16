@@ -22,7 +22,7 @@ export default function DeckDisplay({ cardIds }) {
         <View style={styles.row}>
           {cardIds.map((id, i) => (
             <View key={i} style={styles.rowCell}>
-              <DeckCard card={cardData[id]} index={i} size="grid" />
+              <DeckCard card={cardData[id]} index={i} size="grid" compact />
             </View>
           ))}
         </View>
@@ -73,8 +73,8 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
   },
   rowCell: {
-    width: '12.5%',
-    alignItems: 'center',
+    flex: 1,
+    minWidth: 0,
     paddingHorizontal: 1,
   },
   statsContainer: {

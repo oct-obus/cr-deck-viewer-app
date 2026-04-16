@@ -3,14 +3,14 @@ import { View, Image, Text, StyleSheet } from 'react-native';
 import { RARITY_COLORS } from '../shared/constants';
 import { getCardImage } from '../data/cardDataProvider';
 
-export default function DeckCard({ card, index, size = 'normal' }) {
+export default function DeckCard({ card, index, size = 'normal', compact = false }) {
   if (!card) {
     return (
       <View style={[styles.container, sizeStyles[size]]}>
         <View style={styles.unknownSlot}>
           <Text style={styles.unknownText}>?</Text>
         </View>
-        <Text style={styles.unknownName}>Unknown</Text>
+        {!compact && <Text style={styles.unknownName}>Unknown</Text>}
       </View>
     );
   }
@@ -23,10 +23,14 @@ export default function DeckCard({ card, index, size = 'normal' }) {
       <View style={[styles.imageWrapper, { borderColor: rarityColor }]}>
         <Image source={imageSource} style={styles.cardImage} resizeMode="cover" />
       </View>
-      <Text style={[styles.name, { color: rarityColor }]} numberOfLines={1}>
-        {card.name}
-      </Text>
-      <Text style={styles.elixirText}>{card.elixir} elixir</Text>
+      {!compact && (
+        <>
+          <Text style={[styles.name, { color: rarityColor }]} numberOfLines={1}>
+            {card.name}
+          </Text>
+          <Text style={styles.elixirText}>{card.elixir} elixir</Text>
+        </>
+      )}
     </View>
   );
 }
