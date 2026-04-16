@@ -21,9 +21,13 @@ export default function SavedDeckRow({ deck, index, onLoad, onDelete, size = 'me
     const imageSource = getCardImage(card, i);
     const rarityColor = RARITY_COLORS[card.rarity] || '#444';
 
+    const thumbStyle = stacked
+      ? [styles.thumb, styles.stackedThumb, { borderColor: rarityColor }]
+      : [styles.thumb, { height: thumbHeight, borderColor: rarityColor }];
+
     return (
       <View key={i} style={stacked ? styles.stackedThumbCell : styles.thumbCell}>
-        <View style={[styles.thumb, { height: thumbHeight, borderColor: rarityColor }]}>
+        <View style={thumbStyle}>
           <Image source={imageSource} style={styles.thumbImage} resizeMode="cover" />
         </View>
       </View>
@@ -115,7 +119,6 @@ const styles = StyleSheet.create({
   },
   stackedCardsRow: {
     flexDirection: 'row',
-    justifyContent: 'center',
     marginBottom: 8,
   },
   stackedThumbCell: {
@@ -137,6 +140,9 @@ const styles = StyleSheet.create({
     borderWidth: 1.5,
     overflow: 'hidden',
     backgroundColor: '#1a1a2e',
+  },
+  stackedThumb: {
+    width: '100%',
   },
   thumbImage: {
     width: '100%',
