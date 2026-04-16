@@ -1,18 +1,25 @@
 import React, { useState, useMemo, useCallback } from 'react';
 import {
   View, Text, FlatList, Pressable, Alert,
-  StyleSheet,
+  StyleSheet, useWindowDimensions,
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useNavigation } from '@react-navigation/native';
 import SavedDeckRow from '../components/SavedDeckRow';
+import SavedDeckGridItem from '../components/SavedDeckGridItem';
 import cardData from '../data/cardDataProvider';
 import { useDeckContext } from '../context/DeckContext';
+import { useSettings } from '../context/SettingsContext';
 
 export default function SavedDecksScreen() {
   const { savedDecks: decks, onDeckLoad, onDeckDelete } = useDeckContext();
+  const { settings } = useSettings();
   const navigation = useNavigation();
+  const { width } = useWindowDimensions();
   const [groupBy, setGroupBy] = useState('none');
+
+  const isGrid = settings.savedDecksView === 'grid';
+  const entrySize = settings.savedDeckSize;
 
   const handleLoad = useCallback((index) => {
     onDeckLoad(index);
@@ -62,6 +69,13 @@ export default function SavedDecksScreen() {
       }));
   }, [decks, groupBy]);
 
+  // Grid column count based on screen width and entry size
+  const numColumns = useMemo(() => {
+    if (!isGrid) return 1;
+    const itemWidth = entrySize === 'small' ? 140 : entrySize === 'large' ? 220 : 170;
+    return Math.max(2, Math.floor((width - 32) / itemWidth));
+  }, [isGrid, entrySize, width]);
+
   if (decks.length === 0) {
     return (
       <SafeAreaView style={styles.safe} edges={['top']}>
@@ -74,6 +88,43 @@ export default function SavedDecksScreen() {
       </SafeAreaView>
     );
   }
+
+  const renderGroup = ({ item: group }) => (
+    <View>
+      {group.label && (
+        <View style={styles.groupHeader}>
+          <Text style={styles.groupLabel}>{group.label}</Text>
+          <Text style={styles.groupCount}>{group.count}</Text>
+        </View>
+      )}
+      {isGrid ? (
+        <View style={styles.gridContainer}>
+          {group.items.map(({ deck, originalIndex }) => (
+            <SavedDeckGridItem
+              key={originalIndex}
+              deck={deck}
+              index={originalIndex}
+              onLoad={handleLoad}
+              onDelete={handleDelete}
+              size={entrySize}
+              numColumns={numColumns}
+            />
+          ))}
+        </View>
+      ) : (
+        group.items.map(({ deck, originalIndex }) => (
+          <SavedDeckRow
+            key={originalIndex}
+            deck={deck}
+            index={originalIndex}
+            onLoad={handleLoad}
+            onDelete={handleDelete}
+            size={entrySize}
+          />
+        ))
+      )}
+    </View>
+  );
 
   return (
     <SafeAreaView style={styles.safe} edges={['top']}>
@@ -94,25 +145,7 @@ export default function SavedDecksScreen() {
       <FlatList
         data={groupedDecks}
         keyExtractor={item => item.key}
-        renderItem={({ item: group }) => (
-          <View>
-            {group.label && (
-              <View style={styles.groupHeader}>
-                <Text style={styles.groupLabel}>{group.label}</Text>
-                <Text style={styles.groupCount}>{group.count}</Text>
-              </View>
-            )}
-            {group.items.map(({ deck, originalIndex }) => (
-              <SavedDeckRow
-                key={originalIndex}
-                deck={deck}
-                index={originalIndex}
-                onLoad={handleLoad}
-                onDelete={handleDelete}
-              />
-            ))}
-          </View>
-        )}
+        renderItem={renderGroup}
         contentContainerStyle={styles.list}
         showsVerticalScrollIndicator={false}
       />
@@ -164,6 +197,11 @@ const styles = StyleSheet.create({
   list: {
     paddingHorizontal: 16,
     paddingBottom: 100,
+  },
+  gridContainer: {
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    gap: 8,
   },
   groupHeader: {
     flexDirection: 'row',

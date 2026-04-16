@@ -1,25 +1,36 @@
 import React from 'react';
-import { View, Text, StyleSheet } from 'react-native';
+import { View, Text, ScrollView, StyleSheet } from 'react-native';
 import { GlassView, liquidGlassSupported } from './GlassView';
 import DeckCard from './DeckCard';
 import { computeDeckStats } from '../shared/deckStats';
 import cardData from '../data/cardDataProvider';
+import { useSettings } from '../context/SettingsContext';
 
 export default function DeckDisplay({ cardIds }) {
+  const { settings } = useSettings();
   if (!cardIds || cardIds.length === 0) return null;
 
   const stats = computeDeckStats(cardIds, cardData);
+  const is1x8 = settings.deckLayout === '1x8';
 
   return (
     <GlassView
       style={styles.container}
       {...(liquidGlassSupported ? { effect: 'regular', colorScheme: 'dark' } : {})}
     >
-      <View style={styles.grid}>
-        {cardIds.map((id, i) => (
-          <DeckCard key={i} card={cardData[id]} index={i} />
-        ))}
-      </View>
+      {is1x8 ? (
+        <ScrollView horizontal showsHorizontalScrollIndicator={false} contentContainerStyle={styles.row}>
+          {cardIds.map((id, i) => (
+            <DeckCard key={i} card={cardData[id]} index={i} size="small" />
+          ))}
+        </ScrollView>
+      ) : (
+        <View style={styles.grid}>
+          {cardIds.map((id, i) => (
+            <DeckCard key={i} card={cardData[id]} index={i} />
+          ))}
+        </View>
+      )}
       {stats && (
         <View style={styles.statsContainer}>
           <Text style={styles.statRow}>
@@ -48,6 +59,11 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     flexWrap: 'wrap',
     justifyContent: 'center',
+  },
+  row: {
+    flexDirection: 'row',
+    alignItems: 'flex-start',
+    paddingHorizontal: 4,
   },
   statsContainer: {
     marginTop: 12,

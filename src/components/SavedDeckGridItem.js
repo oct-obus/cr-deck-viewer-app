@@ -6,12 +6,12 @@ import { getCardImage } from '../data/cardDataProvider';
 import cardData from '../data/cardDataProvider';
 
 const THUMB_SIZES = {
-  small:  { width: 24, height: 30 },
-  medium: { width: 32, height: 40 },
+  small:  { width: 28, height: 34 },
+  medium: { width: 34, height: 42 },
   large:  { width: 42, height: 52 },
 };
 
-export default function SavedDeckRow({ deck, index, onLoad, onDelete, size = 'medium' }) {
+export default function SavedDeckGridItem({ deck, index, onLoad, onDelete, size = 'medium', numColumns = 2 }) {
   const thumbSize = THUMB_SIZES[size] || THUMB_SIZES.medium;
 
   const cards = deck.cardIds.map((id, i) => {
@@ -27,87 +27,71 @@ export default function SavedDeckRow({ deck, index, onLoad, onDelete, size = 'me
     );
   });
 
-  const date = new Date(deck.savedAt).toLocaleDateString();
+  // Calculate width based on number of columns, accounting for gaps
+  const itemWidth = `${Math.floor(100 / numColumns) - 1}%`;
 
   return (
-    <Pressable onPress={() => onLoad(index)}>
+    <Pressable onPress={() => onLoad(index)} style={{ width: itemWidth }}>
       <GlassView
-        style={[styles.row, size === 'large' && styles.rowLarge]}
+        style={styles.card}
         {...(liquidGlassSupported ? { effect: 'clear', colorScheme: 'dark', interactive: true } : {})}
       >
-      <View style={styles.cardsRow}>{cards}</View>
-      <View style={styles.info}>
-        <Text style={[styles.name, size === 'small' && styles.nameSmall]} numberOfLines={1}>{deck.name}</Text>
-        <Text style={styles.date}>{date}</Text>
-      </View>
-      <Pressable
-        style={styles.deleteBtn}
-        onPress={() => onDelete(index)}
-        hitSlop={8}
-      >
-        <Text style={styles.deleteText}>✕</Text>
-      </Pressable>
+        <View style={styles.cardGrid}>{cards}</View>
+        <Text style={styles.name} numberOfLines={1}>{deck.name}</Text>
+        <View style={styles.footer}>
+          <Text style={styles.date}>{new Date(deck.savedAt).toLocaleDateString()}</Text>
+          <Pressable onPress={() => onDelete(index)} hitSlop={8}>
+            <Text style={styles.deleteText}>✕</Text>
+          </Pressable>
+        </View>
       </GlassView>
     </Pressable>
   );
 }
 
 const styles = StyleSheet.create({
-  row: {
-    flexDirection: 'row',
-    alignItems: 'center',
+  card: {
     backgroundColor: 'rgba(16, 26, 50, 0.4)',
     borderRadius: 12,
     padding: 10,
     marginBottom: 8,
   },
-  rowLarge: {
-    padding: 14,
-  },
-  cardsRow: {
+  cardGrid: {
     flexDirection: 'row',
-    flex: 0,
+    flexWrap: 'wrap',
+    justifyContent: 'center',
+    marginBottom: 8,
   },
   thumb: {
     borderRadius: 4,
     borderWidth: 1.5,
     overflow: 'hidden',
-    marginRight: 2,
+    margin: 1,
     backgroundColor: '#1a1a2e',
   },
   thumbImage: {
     width: '100%',
     height: '100%',
   },
-  info: {
-    flex: 1,
-    marginLeft: 10,
-  },
   name: {
     color: '#e8e8f0',
-    fontSize: 14,
+    fontSize: 13,
     fontWeight: '600',
+    textAlign: 'center',
+    marginBottom: 4,
   },
-  nameSmall: {
-    fontSize: 12,
+  footer: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
   },
   date: {
     color: '#777',
-    fontSize: 11,
-    marginTop: 2,
-  },
-  deleteBtn: {
-    width: 32,
-    height: 32,
-    borderRadius: 16,
-    backgroundColor: 'rgba(255, 107, 107, 0.15)',
-    justifyContent: 'center',
-    alignItems: 'center',
-    marginLeft: 8,
+    fontSize: 10,
   },
   deleteText: {
     color: '#ff6b6b',
-    fontSize: 14,
+    fontSize: 13,
     fontWeight: '700',
   },
 });

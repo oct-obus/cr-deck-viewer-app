@@ -5,7 +5,9 @@ import { NavigationContainer, DarkTheme } from '@react-navigation/native';
 import { createNativeBottomTabNavigator } from '@react-navigation/bottom-tabs/unstable';
 import DeckViewerScreen from './src/screens/DeckViewerScreen';
 import SavedDecksScreen from './src/screens/SavedDecksScreen';
+import SettingsScreen from './src/screens/SettingsScreen';
 import { DeckProvider, useDeckContext } from './src/context/DeckContext';
+import { SettingsProvider } from './src/context/SettingsContext';
 
 const Tab = createNativeBottomTabNavigator();
 
@@ -55,6 +57,17 @@ function AppTabs() {
           headerShown: false,
         }}
       />
+      <Tab.Screen
+        name="Settings"
+        component={SettingsScreen}
+        options={{
+          title: 'Settings',
+          tabBarIcon: Platform.OS === 'ios'
+            ? { type: 'sfSymbol', name: 'gearshape' }
+            : undefined,
+          headerShown: false,
+        }}
+      />
     </Tab.Navigator>
   );
 }
@@ -62,12 +75,14 @@ function AppTabs() {
 export default function App() {
   return (
     <SafeAreaProvider>
-      <DeckProvider>
-        <NavigationContainer theme={appTheme}>
-          <StatusBar barStyle="light-content" backgroundColor="#0a0a1a" />
-          <AppTabs />
-        </NavigationContainer>
-      </DeckProvider>
+      <SettingsProvider>
+        <DeckProvider>
+          <NavigationContainer theme={appTheme}>
+            <StatusBar barStyle="light-content" backgroundColor="#0a0a1a" />
+            <AppTabs />
+          </NavigationContainer>
+        </DeckProvider>
+      </SettingsProvider>
     </SafeAreaProvider>
   );
 }
