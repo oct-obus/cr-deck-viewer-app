@@ -12,13 +12,11 @@ export function DeckProvider({ children }) {
     getSavedDecks().then(setSavedDecks);
   }, []);
 
-  const handleDeckSaved = useCallback((newDecks) => {
-    setSavedDecks(newDecks);
-  }, []);
-
   const handleDeckLoad = useCallback((index) => {
     const deck = savedDecks[index];
     if (deck) {
+      // _loadTime forces a new object reference so useEffect re-fires even
+      // when the user loads the same deck twice in a row.
       setLoadedDeck({ ...deck, _loadTime: Date.now() });
     }
   }, [savedDecks]);
@@ -36,7 +34,7 @@ export function DeckProvider({ children }) {
     <DeckContext.Provider value={{
       savedDecks,
       loadedDeck,
-      onDeckSaved: handleDeckSaved,
+      onDeckSaved: setSavedDecks,
       onDeckLoad: handleDeckLoad,
       onDeckDelete: handleDeckDelete,
     }}>

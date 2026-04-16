@@ -1,16 +1,9 @@
 import React from 'react';
-import { View, Text, Image, Pressable, StyleSheet, Platform } from 'react-native';
+import { View, Text, Image, Pressable, StyleSheet } from 'react-native';
+import { GlassView, liquidGlassSupported } from './GlassView';
 import { RARITY_COLORS } from '../shared/constants';
 import { getCardImage } from '../data/cardDataProvider';
 import cardData from '../data/cardDataProvider';
-
-let GlassView = View;
-if (Platform.OS === 'ios') {
-  try {
-    const lg = require('@callstack/liquid-glass');
-    if (lg.isLiquidGlassSupported) GlassView = lg.LiquidGlassView;
-  } catch {}
-}
 
 // Compact saved deck row for the list view
 export default function SavedDeckRow({ deck, index, onLoad, onDelete }) {
@@ -33,7 +26,7 @@ export default function SavedDeckRow({ deck, index, onLoad, onDelete }) {
     <Pressable onPress={() => onLoad(index)}>
       <GlassView
         style={styles.row}
-        {...(GlassView !== View ? { effect: 'clear', colorScheme: 'dark', interactive: true } : {})}
+        {...(liquidGlassSupported ? { effect: 'clear', colorScheme: 'dark', interactive: true } : {})}
       >
       <View style={styles.cardsRow}>{cards}</View>
       <View style={styles.info}>
@@ -42,7 +35,7 @@ export default function SavedDeckRow({ deck, index, onLoad, onDelete }) {
       </View>
       <Pressable
         style={styles.deleteBtn}
-        onPress={(e) => { e.stopPropagation?.(); onDelete(index); }}
+        onPress={() => onDelete(index)}
         hitSlop={8}
       >
         <Text style={styles.deleteText}>✕</Text>

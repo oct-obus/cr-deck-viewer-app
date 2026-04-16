@@ -1,16 +1,9 @@
 import React from 'react';
-import { View, Text, StyleSheet, Platform } from 'react-native';
+import { View, Text, StyleSheet } from 'react-native';
+import { GlassView, liquidGlassSupported } from './GlassView';
 import DeckCard from './DeckCard';
 import { computeDeckStats } from '../shared/deckStats';
 import cardData from '../data/cardDataProvider';
-
-let GlassView = View;
-if (Platform.OS === 'ios') {
-  try {
-    const lg = require('@callstack/liquid-glass');
-    if (lg.isLiquidGlassSupported) GlassView = lg.LiquidGlassView;
-  } catch {}
-}
 
 export default function DeckDisplay({ cardIds }) {
   if (!cardIds || cardIds.length === 0) return null;
@@ -20,7 +13,7 @@ export default function DeckDisplay({ cardIds }) {
   return (
     <GlassView
       style={styles.container}
-      {...(GlassView !== View ? { effect: 'regular', colorScheme: 'dark' } : {})}
+      {...(liquidGlassSupported ? { effect: 'regular', colorScheme: 'dark' } : {})}
     >
       <View style={styles.grid}>
         {cardIds.map((id, i) => (

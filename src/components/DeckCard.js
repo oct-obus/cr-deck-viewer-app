@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Image, Text, StyleSheet, Pressable } from 'react-native';
+import { View, Image, Text, StyleSheet } from 'react-native';
 import { RARITY_COLORS } from '../shared/constants';
 import { getCardImage } from '../data/cardDataProvider';
 

@@ -92,7 +92,6 @@ export default function DeckViewerScreen() {
                   name: name || suggested || 'Unnamed Deck',
                   cardIds: deckCardIds,
                   tt: towerTroop,
-                  slots: [],
                 }, savedDecks);
                 onDeckSaved(newDecks);
               } catch (e) {
@@ -116,7 +115,6 @@ export default function DeckViewerScreen() {
                 name: suggested || 'Unnamed Deck',
                 cardIds: deckCardIds,
                 tt: towerTroop,
-                slots: [],
               }, savedDecks);
               onDeckSaved(newDecks);
             } catch (e) {

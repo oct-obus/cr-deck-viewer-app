@@ -24,10 +24,3 @@ export function getCardImage(card, index) {
   const localKey = 'local' + key.charAt(0).toUpperCase() + key.slice(1);
   return card[localKey] || card.localIcon;
 }
-
-// Get card type from ID
-export function getCardType(id) {
-  if (id.startsWith('27')) return 'building';
-  if (id.startsWith('28')) return 'spell';
-  return 'troop';
-}
