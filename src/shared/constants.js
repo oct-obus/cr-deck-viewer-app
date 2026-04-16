@@ -1,12 +1,11 @@
 // Single source of truth for deck naming constants
-// Shared between web and React Native app
+// Used by both client (js/deckNaming.js) and server (server.js)
+// Win condition flags are stored per-card in cards.json (isWinCondition field),
+// populated from RoyaleAPI data via scrape-royaleapi.js + update-cards.mjs.
 
 export const RARITY_COLORS = {
-  common: '#62a2ff',
-  rare: '#f3821d',
-  epic: '#a564d1',
-  legendary: '#00c0b0',
-  champion: '#f3ba25',
+  common: '#62a2ff', rare: '#f3821d', epic: '#a564d1',
+  legendary: '#00c0b0', champion: '#f3ba25',
 };
 
 export const CARD_ABBREVS = {
