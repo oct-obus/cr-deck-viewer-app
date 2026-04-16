@@ -27,6 +27,12 @@ jobs:
         working-directory: ios
         run: pod install
 
+      - name: Set build number
+        run: |
+          cd ios
+          agvtool new-version -all ${{ github.run_number }}
+          echo "Build number: ${{ github.run_number }}"
+
       - name: Build unsigned archive
         working-directory: ios
         run: |
@@ -83,7 +89,8 @@ jobs:
           git push origin "$TAG" --force
           gh release create "$TAG" CRDeckViewer-unsigned.ipa \
             --title "Latest Build ($BRANCH)" \
-            --notes "Auto-updated unsigned IPA from \`$BRANCH\` branch.
+            --notes "Unsigned IPA from \`$BRANCH\` branch.
+          Version: $(cd ios && agvtool what-marketing-version -terse1) (build ${{ github.run_number }})
           Built: $(date -u '+%Y-%m-%d %H:%M UTC')
           Commit: ${{ github.sha }}" \
             --prerelease
